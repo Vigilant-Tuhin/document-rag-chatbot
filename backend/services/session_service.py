@@ -2,7 +2,7 @@ import asyncio
 import logging
 import uuid
 
-from sqlalchemy import delete, select
+from sqlalchemy import delete, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.database import AsyncSessionLocal
@@ -66,6 +66,7 @@ class SessionService:
                 vectordb.delete_session_embeddings("ltm", session_id)
 
                 await db.execute(delete(SessionChatHistory).where(SessionChatHistory.session_id == session_id))
+                await db.execute(text("DELETE FROM chunks_fts WHERE session_id = :session_id"), {"session_id": session_id})
                 await db.execute(delete(DocumentChunk).where(DocumentChunk.session_id == session_id))
                 await db.execute(delete(Document).where(Document.session_id == session_id))
                 await db.execute(delete(Session).where(Session.id == session_id))

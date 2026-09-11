@@ -1,0 +1,723 @@
+{
+  "summary": {
+    "session_id": "d7f03a24-a627-4fc5-abbb-bd7ac66c876e",
+    "mode": "vector",
+    "num_questions": 37,
+    "mrr": 0.6495,
+    "recall_at_k": {
+      "1": 0.4865,
+      "3": 0.8108,
+      "5": 0.8378
+    }
+  },
+  "per_question": [
+    {
+      "question": "What two coalitions did nearly all the world's countries participate in during World War II?",
+      "expected_chunk_ids": [
+        126
+      ],
+      "retrieved_chunk_ids": [
+        126,
+        127,
+        233,
+        234,
+        159
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What did Nazi Germany, under Adolf Hitler, do on 1 September 1939 that is generally considered the start of World War II?",
+      "expected_chunk_ids": [
+        128
+      ],
+      "retrieved_chunk_ids": [
+        134,
+        128,
+        255,
+        150,
+        157
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "On what date did Germany sign its unconditional surrender?",
+      "expected_chunk_ids": [
+        130
+      ],
+      "retrieved_chunk_ids": [
+        211,
+        130,
+        210,
+        147,
+        137
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "On what date did Japan attack Pearl Harbor?",
+      "expected_chunk_ids": [
+        178
+      ],
+      "retrieved_chunk_ids": [
+        178,
+        176,
+        177,
+        183,
+        172
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What is 6 June 1944 commonly known as?",
+      "expected_chunk_ids": [
+        198
+      ],
+      "retrieved_chunk_ids": [
+        278,
+        198,
+        126,
+        196,
+        195
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "Who succeeded Franklin D. Roosevelt as US President after his death on 12 April 1945?",
+      "expected_chunk_ids": [
+        206
+      ],
+      "retrieved_chunk_ids": [
+        206,
+        207,
+        209,
+        126,
+        159
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "Where and when was the Japanese Instrument of Surrender signed?",
+      "expected_chunk_ids": [
+        211
+      ],
+      "retrieved_chunk_ids": [
+        210,
+        211,
+        281,
+        209,
+        266
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "Approximately how many Jews did the Nazis kill in the Holocaust?",
+      "expected_chunk_ids": [
+        223
+      ],
+      "retrieved_chunk_ids": [
+        222,
+        223,
+        231,
+        291,
+        342
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "When did the United Nations officially come into existence?",
+      "expected_chunk_ids": [
+        214
+      ],
+      "retrieved_chunk_ids": [
+        131,
+        285,
+        214,
+        284,
+        134
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.3333333333333333
+    },
+    {
+      "question": "What allowed the Americans to achieve a decisive victory over the Imperial Japanese Navy at Midway?",
+      "expected_chunk_ids": [
+        184
+      ],
+      "retrieved_chunk_ids": [
+        184,
+        183,
+        177,
+        181,
+        203
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What phrase did the Allied ultimatum issued during the Potsdam Conference use to describe the consequence of Japan rejecting unconditional surrender?",
+      "expected_chunk_ids": [
+        209
+      ],
+      "retrieved_chunk_ids": [
+        210,
+        209,
+        281,
+        211,
+        130
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "What kinds of events, besides direct combat, were responsible for most civilian deaths in the war?",
+      "expected_chunk_ids": [
+        127
+      ],
+      "retrieved_chunk_ids": [
+        218,
+        223,
+        221,
+        225,
+        226
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0
+    },
+    {
+      "question": "How was Poland divided between two aggressor states in September 1939?",
+      "expected_chunk_ids": [
+        128
+      ],
+      "retrieved_chunk_ids": [
+        152,
+        151,
+        147,
+        148,
+        128
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.2
+    },
+    {
+      "question": "Which Pacific naval battle in mid-1942 stopped Japan's advances from continuing?",
+      "expected_chunk_ids": [
+        129
+      ],
+      "retrieved_chunk_ids": [
+        181,
+        184,
+        183,
+        208,
+        203
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0
+    },
+    {
+      "question": "Which five countries became the permanent members of the UN Security Council?",
+      "expected_chunk_ids": [
+        131
+      ],
+      "retrieved_chunk_ids": [
+        214,
+        131,
+        285,
+        286,
+        284
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "What political change happened in the Japanese government shortly before the attack on Pearl Harbor?",
+      "expected_chunk_ids": [
+        176
+      ],
+      "retrieved_chunk_ids": [
+        176,
+        178,
+        172,
+        209,
+        265
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What happened to Filipino and American prisoners of war after the fall of Bataan?",
+      "expected_chunk_ids": [
+        182
+      ],
+      "retrieved_chunk_ids": [
+        182,
+        207,
+        226,
+        206,
+        185
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "Why did the Soviet Union choose to make its stand at Stalingrad?",
+      "expected_chunk_ids": [
+        187
+      ],
+      "retrieved_chunk_ids": [
+        187,
+        166,
+        275,
+        169,
+        186
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What did the Allied leaders agree to at the Tehran Conference regarding the war against Japan?",
+      "expected_chunk_ids": [
+        195
+      ],
+      "retrieved_chunk_ids": [
+        179,
+        209,
+        251,
+        281,
+        180
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0
+    },
+    {
+      "question": "Who helped liberate Paris in August 1944, and who led that effort?",
+      "expected_chunk_ids": [
+        199
+      ],
+      "retrieved_chunk_ids": [
+        199,
+        190,
+        196,
+        255,
+        198
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What happened during the Warsaw Uprising, and how did the Soviet Red Army respond?",
+      "expected_chunk_ids": [
+        200
+      ],
+      "retrieved_chunk_ids": [
+        200,
+        151,
+        275,
+        201,
+        154
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What was Germany trying to accomplish by launching its offensive in the Ardennes in December 1944?",
+      "expected_chunk_ids": [
+        204
+      ],
+      "retrieved_chunk_ids": [
+        180,
+        156,
+        255,
+        155,
+        166
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0
+    },
+    {
+      "question": "How did the Bretton Woods Conference shape the post-war global economy?",
+      "expected_chunk_ids": [
+        219
+      ],
+      "retrieved_chunk_ids": [
+        219,
+        287,
+        260,
+        218,
+        131
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What justification did Japan give for occupying territories across Asia?",
+      "expected_chunk_ids": [
+        232
+      ],
+      "retrieved_chunk_ids": [
+        174,
+        232,
+        178,
+        173,
+        175
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "Why were aircraft carriers considered more economical than battleships during the war?",
+      "expected_chunk_ids": [
+        237
+      ],
+      "retrieved_chunk_ids": [
+        237,
+        236,
+        234,
+        270,
+        295
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What happened to Emperor Hirohito's plans for the Soviet Far East once the US imposed sanctions on Japan?",
+      "expected_chunk_ids": [
+        175
+      ],
+      "retrieved_chunk_ids": [
+        175,
+        176,
+        243,
+        174,
+        265
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What large-scale demographic shift resulted from Germany losing its eastern territories after the war?",
+      "expected_chunk_ids": [
+        212
+      ],
+      "retrieved_chunk_ids": [
+        212,
+        213,
+        293,
+        152,
+        205
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "How did the war expand from a localized invasion of Poland into a conflict involving the Soviet Union and the United States?",
+      "expected_chunk_ids": [
+        128,
+        129
+      ],
+      "retrieved_chunk_ids": [
+        148,
+        215,
+        152,
+        151,
+        170
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0
+    },
+    {
+      "question": "What sequence of internal Japanese political decisions and diplomatic failures led directly to the attack on Pearl Harbor?",
+      "expected_chunk_ids": [
+        176,
+        178
+      ],
+      "retrieved_chunk_ids": [
+        176,
+        178,
+        281,
+        265,
+        177
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "What major leadership changes occurred among the Allied and Axis powers in the final months of the war in Europe?",
+      "expected_chunk_ids": [
+        205,
+        206
+      ],
+      "retrieved_chunk_ids": [
+        126,
+        205,
+        261,
+        269,
+        338
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "Which countries suffered the highest overall death tolls in the war, and which suffered the highest military death tolls?",
+      "expected_chunk_ids": [
+        220,
+        221
+      ],
+      "retrieved_chunk_ids": [
+        221,
+        220,
+        225,
+        218,
+        127
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "How did the Battle of the Coral Sea and the Battle of Midway together change the trajectory of the Pacific War for Japan?",
+      "expected_chunk_ids": [
+        183,
+        184
+      ],
+      "retrieved_chunk_ids": [
+        184,
+        183,
+        178,
+        208,
+        181
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "Roughly how much money did Germany collect from its economic policies in occupied Western, Northern, and Central Europe by the end of the war?",
+      "expected_chunk_ids": [
+        229
+      ],
+      "retrieved_chunk_ids": [
+        230,
+        229,
+        220,
+        212,
+        243
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "What percentage of world mineral output did Britain and the United States together control in the 1930s?",
+      "expected_chunk_ids": [
+        233
+      ],
+      "retrieved_chunk_ids": [
+        295,
+        233,
+        294,
+        234,
+        158
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 0.5
+    },
+    {
+      "question": "How many foreign workers were present in greater Germany by late 1944, including POWs undertaking forced labour?",
+      "expected_chunk_ids": [
+        227
+      ],
+      "retrieved_chunk_ids": [
+        227,
+        293,
+        168,
+        327,
+        222
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    },
+    {
+      "question": "According to the article, how many Chinese civilians and POWs were killed in the Nanjing massacre?",
+      "expected_chunk_ids": [
+        224
+      ],
+      "retrieved_chunk_ids": [
+        218,
+        289,
+        288,
+        223,
+        222
+      ],
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0
+    },
+    {
+      "question": "What fraction of all Allied munitions used in World War II did the United States produce?",
+      "expected_chunk_ids": [
+        234
+      ],
+      "retrieved_chunk_ids": [
+        234,
+        233,
+        295,
+        273,
+        272
+      ],
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0
+    }
+  ]
+}

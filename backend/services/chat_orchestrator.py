@@ -5,6 +5,7 @@ import numpy as np
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.vectordb import vectordb
+from services.hybrid_search import hybrid_retrieve
 from services.llm_service import llm_service
 from services.memory_service import memory_service
 from utils.prompt_utils import load_prompt
@@ -51,10 +52,12 @@ class ChatOrchestrator:
         ltm_metas = ltm_results.get("metadatas", [[]])[0]
         long_memory = [ltm_metas[0]["summary"]] if ltm_metas else []
 
-        # 6. Top-k document chunk retrieval
-        chunk_results = vectordb.search(collection_name="chunks", embedding=query_emb, session_id=session_id, n=self.k)
-        chunk_metas = chunk_results.get("metadatas", [[]])[0]
-        doc_contexts = [md.get("text", "") for md in chunk_metas]
+        # 6. Top-k document chunk retrieval — hybrid: vector search + FTS5 keyword
+        #    search, fused with Reciprocal Rank Fusion. Catches exact-term/date/name
+        #    questions that pure vector search sometimes ranks below a semantically
+        #    similar but wrong neighboring chunk.
+        fused_chunks = await hybrid_retrieve(db, session_id, user_message, query_emb, n=self.k)
+        doc_contexts = [c["text"] for c in fused_chunks]
 
         logger.info(
             f"[{session_id}] Loaded short-term ({len(short_memory)} turns), "

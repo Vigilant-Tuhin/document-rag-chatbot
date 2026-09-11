@@ -30,7 +30,9 @@ import statistics
 from datetime import datetime, timezone
 from pathlib import Path
 
+from db.database import AsyncSessionLocal
 from db.vectordb import vectordb
+from services.hybrid_search import hybrid_retrieve
 from services.llm_service import llm_service
 
 EVAL_DIR = Path(__file__).resolve().parent
@@ -47,12 +49,16 @@ def load_test_set():
     return [item for item in data if "_comment" not in item]
 
 
-async def evaluate_question(question: str, expected_chunk_ids: list[int], session_id: str) -> dict:
+async def evaluate_question(question: str, expected_chunk_ids: list[int], session_id: str, mode: str, db) -> dict:
     embedding = await llm_service.embed(question)
 
-    results = vectordb.search(collection_name="chunks", embedding=embedding, session_id=session_id, n=MAX_K)
-    metadatas = results.get("metadatas", [[]])[0]
-    retrieved_chunk_ids = [md.get("chunk_id") for md in metadatas]
+    if mode == "hybrid":
+        fused = await hybrid_retrieve(db, session_id, question, embedding, n=MAX_K)
+        retrieved_chunk_ids = [c["chunk_id"] for c in fused]
+    else:
+        results = vectordb.search(collection_name="chunks", embedding=embedding, session_id=session_id, n=MAX_K)
+        metadatas = results.get("metadatas", [[]])[0]
+        retrieved_chunk_ids = [md.get("chunk_id") for md in metadatas]
 
     expected_set = set(expected_chunk_ids)
 
@@ -78,25 +84,27 @@ async def evaluate_question(question: str, expected_chunk_ids: list[int], sessio
     }
 
 
-async def run(session_id: str):
+async def run(session_id: str, mode: str):
     test_set = load_test_set()
     if not test_set:
         print("No real entries in test_set.json — remove the template's '_comment' entry and add your own.")
         return
 
-    print(f"Running retrieval eval: {len(test_set)} questions against session {session_id}\n")
+    print(f"Running retrieval eval ({mode} mode): {len(test_set)} questions against session {session_id}\n")
 
     per_question_results = []
-    for item in test_set:
-        result = await evaluate_question(item["question"], item["expected_chunk_ids"], session_id)
-        per_question_results.append(result)
+    async with AsyncSessionLocal() as db:
+        for item in test_set:
+            result = await evaluate_question(item["question"], item["expected_chunk_ids"], session_id, mode, db)
+            per_question_results.append(result)
 
-        hit_marker = "✓" if result["reciprocal_rank"] > 0 else "✗"
-        print(f"  {hit_marker} [{result['reciprocal_rank']:.2f} RR] {result['question'][:70]}")
+            hit_marker = "✓" if result["reciprocal_rank"] > 0 else "✗"
+            print(f"  {hit_marker} [{result['reciprocal_rank']:.2f} RR] {result['question'][:70]}")
 
     # Aggregate
     summary = {
         "session_id": session_id,
+        "mode": mode,
         "num_questions": len(test_set),
         "mrr": round(statistics.mean(r["reciprocal_rank"] for r in per_question_results), 4),
         "recall_at_k": {
@@ -106,6 +114,7 @@ async def run(session_id: str):
     }
 
     print("\n--- Summary ---")
+    print(f"Mode: {mode}")
     print(f"MRR: {summary['mrr']}")
     for k in RECALL_K_VALUES:
         print(f"Recall@{k}: {summary['recall_at_k'][k]}")
@@ -113,7 +122,7 @@ async def run(session_id: str):
     # Save full results (per-question + summary) for later before/after comparison
     RESULTS_DIR.mkdir(exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    out_path = RESULTS_DIR / f"retrieval_{timestamp}.json"
+    out_path = RESULTS_DIR / f"retrieval_{mode}_{timestamp}.json"
     with open(out_path, "w") as f:
         json.dump({"summary": summary, "per_question": per_question_results}, f, indent=2)
 
@@ -123,6 +132,7 @@ async def run(session_id: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--session-id", required=True, help="Session ID the test document was uploaded into")
+    parser.add_argument("--mode", choices=["vector", "hybrid"], default="vector", help="Retrieval mode to evaluate")
     args = parser.parse_args()
 
-    asyncio.run(run(args.session_id))
+    asyncio.run(run(args.session_id, args.mode))

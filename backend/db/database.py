@@ -31,3 +31,14 @@ async def init_db():
     logger.info("Initialising SQLite database")
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
+        # Standalone FTS5 index for keyword/BM25 search over document chunks.
+        # Kept separate from the ORM models since FTS5 virtual tables aren't
+        # regular SQLAlchemy models — populated manually in ingestion_service.
+        await conn.exec_driver_sql(
+            """
+            CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts
+            USING fts5(chunk_id UNINDEXED, session_id UNINDEXED, text)
+            """
+        )
+        logger.info("Ensured chunks_fts FTS5 index exists")

@@ -4,6 +4,7 @@ import logging
 from docx import Document as DocxDocument
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from PyPDF2 import PdfReader
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from tqdm import tqdm
 
@@ -65,6 +66,12 @@ class IngestionService:
             }
             vector_id = f"{session_id}_{doc_id}_{chunk_id}"
             vectordb.add_vector(collection_name="chunks", embedding=emb, metadata=metadata, vector_id=vector_id)
+
+            # Mirror into the FTS5 keyword index for hybrid retrieval
+            await db.execute(
+                text("INSERT INTO chunks_fts (chunk_id, session_id, text) VALUES (:chunk_id, :session_id, :text)"),
+                {"chunk_id": chunk_id, "session_id": session_id, "text": chunk_text},
+            )
 
         logger.info(f"Completed ChromaDB ingestion: {len(chunks)} vectors added")
 
