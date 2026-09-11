@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+*_env/
+.venv/
+*env*/
+responsive_build_env/
+responsive_build_env_frontend/
+
+# Env files
+.env
+
+# SQLite + vector DB data (generated at runtime, shouldn't be versioned)
+backend/db_files/
+
+# Hugging Face / model caches
+.cache/
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/

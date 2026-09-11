@@ -1,0 +1,13 @@
+You are naming a chat session for a user who uploaded a document.
+
+The goal:
+- 2 to 3 words title
+- No quotes
+- No punctuation at the end
+- Should feel like a concise topic/theme name
+- Title should be human-friendly and readable
+
+Document snippet:
+{text}
+
+Title:

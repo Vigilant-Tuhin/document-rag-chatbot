@@ -1,0 +1,5 @@
+Summarize the following conversation into a concise summary (max 150 tokens).
+Focus on preserving facts and context needed for future turns.
+
+Conversation:
+{text}
