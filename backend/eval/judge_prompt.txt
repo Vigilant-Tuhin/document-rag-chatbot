@@ -1,0 +1,22 @@
+You are an impartial evaluator scoring a RAG chatbot's answer.
+
+QUESTION:
+{question}
+
+RETRIEVED CONTEXT (what the chatbot had available to answer from):
+{context}
+
+REFERENCE ANSWER (written by a human, for comparison only — the chatbot's answer doesn't need to match it word-for-word):
+{expected_answer}
+
+CHATBOT'S ANSWER:
+{generated_answer}
+
+Score the chatbot's answer on two dimensions, each from 1 to 5:
+
+FAITHFULNESS (1-5): Is the answer fully supported by the retrieved context, with no fabricated or hallucinated claims not present in the context? 5 = fully grounded, 1 = mostly fabricated or contradicts the context.
+
+RELEVANCE (1-5): Does the answer actually address the question asked? 5 = directly and completely answers it, 1 = off-topic or doesn't answer the question.
+
+Respond with ONLY a JSON object, no other text, no markdown code fences:
+{{"faithfulness": <int 1-5>, "relevance": <int 1-5>, "reasoning": "<one sentence explaining the scores>"}}

@@ -1,0 +1,383 @@
+{
+  "summary": {
+    "session_id": "d7f03a24-a627-4fc5-abbb-bd7ac66c876e",
+    "mode": "vector",
+    "num_questions": 37,
+    "num_judge_parse_failures": 0,
+    "avg_faithfulness": 4.676,
+    "avg_relevance": 4.892,
+    "avg_word_overlap": 0.647
+  },
+  "per_question": [
+    {
+      "question": "What two coalitions did nearly all the world's countries participate in during World War II?",
+      "generated_answer": "During World War II, nearly all of the world's countries participated in two main coalitions: the Allies and the Axis powers.",
+      "expected_answer": "The Allies and the Axis powers.",
+      "word_overlap": 1.0,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The answer is fully supported by the retrieved context and directly addresses the question.",
+      "parse_ok": true
+    },
+    {
+      "question": "What did Nazi Germany, under Adolf Hitler, do on 1 September 1939 that is generally considered the start of World War II?",
+      "generated_answer": "Nazi Germany, under Adolf Hitler, invaded Poland on 1 September 1939, which is generally considered the start of World War II.",
+      "expected_answer": "Nazi Germany, under Adolf Hitler, invaded Poland.",
+      "word_overlap": 1.0,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The answer is fully grounded in the retrieved context, which explicitly states that Nazi Germany invaded Poland on 1 September 1939, marking the start of World War II, and the answer directly addresses the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "On what date did Germany sign its unconditional surrender?",
+      "generated_answer": "Germany signed its unconditional surrender on 8 May 1945.",
+      "expected_answer": "8 May 1945.",
+      "word_overlap": 1.0,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully supported by the retrieved context, which explicitly mentions that the war in Europe concluded with the liberation of German-occupied territories and the fall of Berlin, culminating in Germany's unconditional surrender on 8 May 1945.",
+      "parse_ok": true
+    },
+    {
+      "question": "On what date did Japan attack Pearl Harbor?",
+      "generated_answer": "Japan attacked Pearl Harbor on December 7, 1941.",
+      "expected_answer": "7 December 1941 (8 December in Asian time zones).",
+      "word_overlap": 0.375,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully supported by the retrieved context and directly answers the question, making it both faithful and relevant.",
+      "parse_ok": true
+    },
+    {
+      "question": "What is 6 June 1944 commonly known as?",
+      "generated_answer": "6 June 1944 is commonly known as D-Day.",
+      "expected_answer": "D-Day, the day the Western Allies invaded northern France.",
+      "word_overlap": 0.25,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully grounded in the retrieved context, accurately recalling the information from the relevant passage, and directly addresses the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "Who succeeded Franklin D. Roosevelt as US President after his death on 12 April 1945?",
+      "generated_answer": "Harry S. Truman succeeded Franklin D. Roosevelt as US President after his death on 12 April 1945.",
+      "expected_answer": "Vice-president Harry S. Truman.",
+      "word_overlap": 0.8,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The answer is fully grounded in the retrieved context and directly addresses the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "Where and when was the Japanese Instrument of Surrender signed?",
+      "generated_answer": "The Japanese Instrument of Surrender was signed on board the USS Missouri on September 2, 1945.",
+      "expected_answer": "Aboard the American battleship USS Missouri in Tokyo Bay, on 2 September 1945.",
+      "word_overlap": 0.538,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The answer is fully grounded in the retrieved context and directly addresses the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "Approximately how many Jews did the Nazis kill in the Holocaust?",
+      "generated_answer": "The Nazis killed about 6 million Jews in the Holocaust.",
+      "expected_answer": "About 6 million Jews, in a racially motivated genocide known as the Holocaust.",
+      "word_overlap": 0.538,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully grounded in the retrieved context and directly addresses the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "When did the United Nations officially come into existence?",
+      "generated_answer": "The United Nations officially came into existence on October 24, 1945.",
+      "expected_answer": "24 October 1945.",
+      "word_overlap": 1.0,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully grounded in the retrieved context and directly answers the question, making it both faithful and relevant.",
+      "parse_ok": true
+    },
+    {
+      "question": "What allowed the Americans to achieve a decisive victory over the Imperial Japanese Navy at Midway?",
+      "generated_answer": "The Americans were able to achieve a decisive victory over the Imperial Japanese Navy at Midway because they had broken Japanese naval codes in late May, allowing them to be fully aware of the plans and order of battle.",
+      "expected_answer": "The Americans had broken Japanese naval codes in late May and were fully aware of Japan's plans and order of battle.",
+      "word_overlap": 0.9,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The answer is fully grounded in the retrieved context, directly addressing the question with no added or contradicting information.",
+      "parse_ok": true
+    },
+    {
+      "question": "What phrase did the Allied ultimatum issued during the Potsdam Conference use to describe the consequence of Japan rejecting unconditional surrender?",
+      "generated_answer": "The Allied ultimatum issued during the Potsdam Conference warned that Japan's alternative to unconditional surrender would be \"prompt and utter destruction\".",
+      "expected_answer": "That \"the alternative for Japan is prompt and utter destruction.\"",
+      "word_overlap": 0.8,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully faithful as it directly quotes the relevant text from the retrieved context, and it is highly relevant as it directly answers the question asked, providing the exact phrase mentioned in the Potsdam Declaration.",
+      "parse_ok": true
+    },
+    {
+      "question": "What kinds of events, besides direct combat, were responsible for most civilian deaths in the war?",
+      "generated_answer": "Massacres and deliberate starvation of civilians were responsible for most civilian deaths in the war. German and Japanese forces committed widespread massacres in occupied territories, particularly in Eastern Europe and Asia-Pacific, while also implementing policies of scorched earth and deliberately starving civilians.",
+      "expected_answer": "Massacres, starvation, disease, and genocides, including the Holocaust.",
+      "word_overlap": 0.5,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is mostly grounded in the context, as it accurately describes massacres and deliberate starvation, but fails to mention disease and genocides, which are present in the context. It directly and completely answers the question.",
+      "parse_ok": true
+    },
+    {
+      "question": "How was Poland divided between two aggressor states in September 1939?",
+      "generated_answer": "Poland was divided between Germany and the Soviet Union in September 1939. Germany annexed the western part of Poland and occupied central Poland, while the Soviet Union annexed the eastern part.",
+      "expected_answer": "Poland was invaded by both Germany and the Soviet Union in September 1939 and was partitioned between the two states under the Molotov-Ribbentrop Pact.",
+      "word_overlap": 0.524,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer accurately reproduces the information from the retrieved context, and directly addresses the question of how Poland was divided in September 1939.",
+      "parse_ok": true
+    },
+    {
+      "question": "Which Pacific naval battle in mid-1942 stopped Japan's advances from continuing?",
+      "generated_answer": "The Battle of Midway, which took place in June 1942, is often considered a turning point in the Pacific Theater, but it actually stopped Japan's advances from continuing after a previous battle in May 1942, the Battle of the Coral Sea. This battle thwarted Japan's plan to capture Port Moresby, a strategic location that would have severed communications and supply lines between the United States and Australia.",
+      "expected_answer": "The Battle of Midway, in June 1942.",
+      "word_overlap": 1.0,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is mostly grounded in the context, as it correctly identifies the Battle of Midway and its significance, but introduces a minor inaccuracy by stating that a previous battle (Coral Sea) stopped Japan's advances, when in fact the retrieved context implies that Midway was the decisive battle.",
+      "parse_ok": true
+    },
+    {
+      "question": "Which five countries became the permanent members of the UN Security Council?",
+      "generated_answer": "The five permanent members of the UN Security Council are China, France, the Soviet Union (now succeeded by Russia), the United Kingdom, and the United States.",
+      "expected_answer": "China, France, the Soviet Union, the United Kingdom, and the United States.",
+      "word_overlap": 1.0,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The answer is mostly faithful to the context as it accurately quotes the key passage, but it should be noted that the chatbot could have been more precise with 'succeeded by Russia' which is not explicitly stated in the text; the answer is highly relevant as it directly and completely answers the question asked",
+      "parse_ok": true
+    },
+    {
+      "question": "What political change happened in the Japanese government shortly before the attack on Pearl Harbor?",
+      "generated_answer": "Shortly before the attack on Pearl Harbor, Prime Minister Fumimaro Konoe resigned, and War Minister Hideki Tojo was appointed in his place.",
+      "expected_answer": "Prime Minister Fumimaro Konoe resigned after Hirohito began favouring entry into the war, and Hirohito appointed War Minister Hideki Tojo as the new Prime Minister instead of Prince Naruhiko Higashikuni.",
+      "word_overlap": 0.458,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer accurately and completely extracts relevant information from the retrieved context, directly addressing the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "What happened to Filipino and American prisoners of war after the fall of Bataan?",
+      "generated_answer": "After the fall of Bataan, Filipino and American prisoners of war were forced by the Japanese to participate in a notorious 42km death march, resulting in thousands of deaths.",
+      "expected_answer": "Japanese forces forced roughly 75,000 Filipino and American prisoners on a 42-km death march, which resulted in thousands of deaths.",
+      "word_overlap": 0.591,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully faithful as it directly quotes the retrieved context, and it is highly relevant as it directly answers the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "Why did the Soviet Union choose to make its stand at Stalingrad?",
+      "generated_answer": "The Soviet Union chose to make its stand at Stalingrad on the Volga River because it was a crucial location that offered a key defensive position. The Germans had been pushing south and were close to taking the city, but the Soviets believed that holding Stalingrad would allow them to maintain a foothold on the Volga and deny the Germans a strategic victory.",
+      "expected_answer": "Because the German Army Group B was heading toward the Volga River, and the Soviet Union decided to defend the city of Stalingrad on the Volga rather than cede it.",
+      "word_overlap": 0.52,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully grounded in the retrieved context and directly addresses the question, providing a clear and concise explanation for the Soviet Union's decision to make its stand at Stalingrad.",
+      "parse_ok": true
+    },
+    {
+      "question": "What did the Allied leaders agree to at the Tehran Conference regarding the war against Japan?",
+      "generated_answer": "I don't have any information about the Allied leaders agreeing on a specific plan regarding the war against Japan at the Tehran Conference. However, I do know that the Allies did meet in Potsdam, Germany, in July 1945, where they reaffirmed their earlier agreements on Germany and reiterated the demand for Japan's unconditional surrender.",
+      "expected_answer": "They agreed that the Soviet Union would declare war on Japan within three months of Germany's defeat, alongside agreeing the Western Allies would invade Europe in 1944.",
+      "word_overlap": 0.423,
+      "faithfulness": 5,
+      "relevance": 3,
+      "reasoning": "The chatbot's answer is faithful as it only refers to information present in the retrieved context, but its relevance is somewhat limited as it only partially addresses the question, focusing on the Potsdam conference instead of the Tehran Conference.",
+      "parse_ok": true
+    },
+    {
+      "question": "Who helped liberate Paris in August 1944, and who led that effort?",
+      "generated_answer": "The liberation of Paris in August 1944 was assisted by the local resistance, and it was led by General Charles de Gaulle, who was also commanding the Free French Forces.",
+      "expected_answer": "The local French resistance liberated Paris on 25 August, assisted by the Free French Forces, both led by General Charles de Gaulle.",
+      "word_overlap": 0.789,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The answer is mostly grounded in the context, but lacks specificity about the local resistance assisting the liberation, which is only mentioned as a fact in a different sentence. It directly and completely answers the question.",
+      "parse_ok": true
+    },
+    {
+      "question": "What happened during the Warsaw Uprising, and how did the Soviet Red Army respond?",
+      "generated_answer": "The Warsaw Uprising was a major resistance movement by the Polish Home Army against the German occupation of Warsaw. Initiated in August 1944, it was brutally suppressed by the Germans, resulting in the deaths of over 150,000 Poles. The Soviet Red Army, which had halted on the other side of the Vistula River, did not immediately intervene to assist the Polish rebels. However, it's worth noting that the Soviet Union's initial hesitation to support the uprising was likely due to their own strategic priorities and their long-standing rivalry with the Polish government-in-exile.",
+      "expected_answer": "The Home Army, the main non-communist Polish resistance faction, initiated an uprising in Warsaw; the Germans quelled it and killed over 150,000 Poles, while the Soviet Red Army halted nearby in the Praga district and did not intervene.",
+      "word_overlap": 0.667,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The answer is mostly grounded in the retrieved context, but the chatbot inferred some additional information not explicitly stated, specifically about the Soviet Union's strategic priorities and rivalry with the Polish government-in-exile.",
+      "parse_ok": true
+    },
+    {
+      "question": "What was Germany trying to accomplish by launching its offensive in the Ardennes in December 1944?",
+      "generated_answer": "The German offensive in the Ardennes in December 1944 was part of a larger strategy to drive a wedge between the American and British forces in Belgium, ultimately aiming to capture the port of Antwerp and split the Allied forces in two.",
+      "expected_answer": "Germany aimed to split the Allies on the Western Front, encircle large portions of Western Allied troops, capture the supply port of Antwerp, and force a political settlement, using most of its remaining reserves.",
+      "word_overlap": 0.345,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer accurately reflects the information provided in the retrieved context, specifically mentioning the goal of splitting the Allied forces and capturing the port of Antwerp, which are both mentioned in the context as part of the German strategy.",
+      "parse_ok": true
+    },
+    {
+      "question": "How did the Bretton Woods Conference shape the post-war global economy?",
+      "generated_answer": "The Bretton Woods Conference, held in 1944, played a significant role in shaping the post-war global economy. The conference resulted in the creation of two key institutions: the International Monetary Fund (IMF) and the International Bank for Reconstruction and Development (IBRD), which later became part of the World Bank Group. This system, known as the Bretton Woods system, established a new global economic order that lasted until 1973. The system was designed to promote economic stability and cooperation among nations, and it had a significant impact on the recovery of European economies after World War II. The US Marshall Plan, which provided economic aid to Europe from 1948 to 1951, also contributed to the rapid economic growth of countries like West Germany and Italy, earning them the nickname \"economic miracle.\"",
+      "expected_answer": "It created an economic framework for the post-war world, establishing the International Monetary Fund (IMF) and the International Bank for Reconstruction and Development (IBRD), later part of the World Bank Group; the resulting Bretton Woods system lasted until 1973.",
+      "word_overlap": 0.839,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully faithful to the retrieved context and directly addresses the question, providing a clear and accurate explanation of the Bretton Woods Conference's impact on the post-war global economy.",
+      "parse_ok": true
+    },
+    {
+      "question": "What justification did Japan give for occupying territories across Asia?",
+      "generated_answer": "Japan claimed that its occupation of territories in Asia was for the purpose of liberating colonized peoples from European domination, as part of its vision for the Greater East Asia Co-Prosperity Sphere.",
+      "expected_answer": "Japan called occupied nations part of the Greater East Asia Co-Prosperity Sphere, claiming it was meant to liberate colonised peoples from European domination, even though it was essentially a Japanese hegemony.",
+      "word_overlap": 0.5,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The answer accurately reflects the retrieved context, but omits the phrase 'essentially a Japanese hegemony' which was present in the reference answer.",
+      "parse_ok": true
+    },
+    {
+      "question": "Why were aircraft carriers considered more economical than battleships during the war?",
+      "generated_answer": "Aircraft carriers were considered more economical than battleships because they required relatively low costs to operate and maintain. This was due to the lower cost of aircraft compared to the expensive construction and maintenance of battleships, which also needed to be heavily armored.",
+      "expected_answer": "Because aircraft were relatively low cost compared to battleships, and carriers were not required to be as heavily armoured.",
+      "word_overlap": 0.824,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer accurately captures the key reasons mentioned in the retrieved context for why aircraft carriers were considered more economical than battleships, without adding any new or unsubstantiated claims.",
+      "parse_ok": true
+    },
+    {
+      "question": "What happened to Emperor Hirohito's plans for the Soviet Far East once the US imposed sanctions on Japan?",
+      "generated_answer": "I don't know the details of Emperor Hirohito's plans for the Soviet Far East. However, I do know that the US imposed sanctions on Japan in 1941, including an embargo on oil supplies, which frustrated Japan's plans for expansion.",
+      "expected_answer": "Japan had been planning to invade the Soviet Far East to exploit Germany's invasion in the west, but abandoned the operation after the US sanctions.",
+      "word_overlap": 0.409,
+      "faithfulness": 3,
+      "relevance": 3,
+      "reasoning": "The answer is mostly grounded, but it doesn't provide specific information about Emperor Hirohito's plans for the Soviet Far East; it only mentions the impact of US sanctions on Japan's plans in general.",
+      "parse_ok": true
+    },
+    {
+      "question": "What large-scale demographic shift resulted from Germany losing its eastern territories after the war?",
+      "generated_answer": "Germany lost a significant portion of its eastern territories after the war, resulting in the expulsion of approximately nine million Germans from these provinces, as well as three million Germans from the Sudetenland in Czechoslovakia. This led to a large-scale demographic shift, with one-fifth of West Germans being refugees from the east.",
+      "expected_answer": "Around nine million Germans were expelled to Germany from provinces such as Silesia and East Prussia that were taken over by Poland and the Soviet Union, plus three million more from the Sudetenland in Czechoslovakia.",
+      "word_overlap": 0.467,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer accurately quotes the retrieved context and presents a clear and concise summary of the demographic shift resulting from Germany's territorial losses.",
+      "parse_ok": true
+    },
+    {
+      "question": "How did the war expand from a localized invasion of Poland into a conflict involving the Soviet Union and the United States?",
+      "generated_answer": "The war expanded from a localized invasion of Poland into a conflict involving the Soviet Union and the United States due to a series of events and agreements. Initially, the invasion of Poland by Germany was allowed to proceed with tacit Soviet support, as indicated by the secret protocol of the military alliance between France, the UK, and the Soviet Union. This allowed Germany to focus on Western Europe, while the Soviet Union annexed eastern Poland.\n\nAs the war continued, the Western powers, including the UK and France, became increasingly involved, and Germany launched a series of aggressive campaigns across Europe. The Soviet Union eventually joined the war effort, but its motivations and goals were different from those of the Western powers.\n\nThe turning point came when Germany launched a surprise attack on the Soviet Union in June 1941, known as Operation Barbarossa. This led to a significant shift in the Soviet Union's priorities and marked the beginning of a prolonged and bloody conflict between Germany and the Soviet Union.\n\nMeanwhile, the United States initially maintained a policy of neutrality, but eventually entered the war after the Japanese attack on Pearl Harbor in December 1941. The Soviet Union and the United States, along with the UK, would eventually become the main Allied powers, while Germany, Italy, and Japan formed the main Axis powers.",
+      "expected_answer": "After Germany invaded Poland in September 1939 (and the Soviet Union invaded it soon after), the war widened when Germany invaded the Soviet Union in June 1941, opening the Eastern Front, and Japan attacked American and British territories including Pearl Harbor in December 1941, bringing the United States into the war.",
+      "word_overlap": 0.618,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is mostly faithful to the retrieved context, but it adds some minor details not explicitly mentioned in the text, such as the motivations and goals of the Soviet Union and the Western powers, and the exact dates of key events.",
+      "parse_ok": true
+    },
+    {
+      "question": "What sequence of internal Japanese political decisions and diplomatic failures led directly to the attack on Pearl Harbor?",
+      "generated_answer": "The sequence of internal Japanese political decisions and diplomatic failures that led directly to the attack on Pearl Harbor began with Japan's preparation for war, despite initial hesitation by Emperor Hirohito. As the situation grew more dire, with American-British-Dutch sanctions limiting Japan's oil supply, the Emperor began to favor Japan's entry into the war. This led to the resignation of Prime Minister Fumimaro Konoe, and the appointment of Hideki Tojo as War Minister.\n\nTojo presented a plan to the Emperor for an attack on Pearl Harbor, which was approved in an imperial conference on November 5, 1941. Japan's government had made a final offer to the United States, calling for an end to aid to China and the lifting of sanctions, but the offer was rejected. The Japanese government then decided to proceed with the attack, believing that it was their only option to secure the resources of Southeast Asia and weaken the Allies.\n\nThe decision to attack Pearl Harbor was a result of a combination of factors, including Japan's desire to secure its interests in Southeast Asia, the need to neutralize the United States Pacific Fleet, and the perceived need to strike first before the Allies could launch a counterattack.",
+      "expected_answer": "After Konoe's resignation and Tojo's appointment, Hirohito approved the war operations plan in early November; when the interim proposal and subsequent negotiations failed to lift US sanctions, Japan proceeded with near-simultaneous attacks on 7 December 1941, including the strike on Pearl Harbor.",
+      "word_overlap": 0.575,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is mostly grounded in the retrieved context, but it does add some general information and conclusions not explicitly stated in the text, which reduces its faithfulness score. However, it directly and completely addresses the question asked, making its relevance score 5.",
+      "parse_ok": true
+    },
+    {
+      "question": "What major leadership changes occurred among the Allied and Axis powers in the final months of the war in Europe?",
+      "generated_answer": "In the final months of the war in Europe, there were some significant leadership changes among the Allied and Axis powers. The Axis powers saw little change in leadership, with Adolf Hitler remaining at the helm until his death in April 1945. However, the Allies saw some key changes, particularly with the entry of the Soviet Union into Silesia and Pomerania in February 1945, and the Western Allies' advance into western Germany in March 1945. These changes marked a significant shift in the balance of power on the continent, ultimately leading to the Allied victory.",
+      "expected_answer": "After the Yalta Conference in February 1945 set terms for occupying Germany, leadership changed rapidly in the following months: President Roosevelt died on 12 April and was succeeded by Truman, Mussolini was killed by Italian partisans on 28 April, and Hitler committed suicide on 30 April.",
+      "word_overlap": 0.297,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is largely faithful to the context, accurately referencing key events and dates, but it does introduce a slight inference about the shift in balance of power, not directly supported by the text. The answer is highly relevant, directly addressing the question about leadership changes in the final months of the war in Europe.",
+      "parse_ok": true
+    },
+    {
+      "question": "Which countries suffered the highest overall death tolls in the war, and which suffered the highest military death tolls?",
+      "generated_answer": "The countries with the highest overall death tolls in the war were the Soviet Union, China, Germany, and Poland. The Soviet Union had the highest toll, with an estimated 20 to 28 million deaths. \n\nThe countries with the highest military death tolls were also the Soviet Union, Germany, China, and Japan. The Soviet Union and Germany suffered the most military deaths, with around 8.7 million and 5.3 million deaths, respectively.",
+      "expected_answer": "The Soviet Union had the highest overall death toll (20-28 million), followed by China, Germany, and Poland. In military deaths specifically, the Soviet Union again led (about 8.7 million), followed by Germany, China, and Japan.",
+      "word_overlap": 0.778,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully supported by the retrieved context and directly addresses the question, accurately citing specific numbers for overall and military death tolls.",
+      "parse_ok": true
+    },
+    {
+      "question": "How did the Battle of the Coral Sea and the Battle of Midway together change the trajectory of the Pacific War for Japan?",
+      "generated_answer": "The Battle of the Coral Sea and the Battle of Midway were significant turning points in the Pacific War. Although Japan was able to fight the Allies to a draw in the Coral Sea, they suffered a major defeat at Midway, where the Americans broke Japanese naval codes and were aware of the plans and order of battle. This loss greatly diminished Japan's capacity for aggressive action and forced them to re-evaluate their strategy. The Midway battle, in particular, prevented Japan from capturing Port Moresby and seizing Midway Atoll, which were crucial to their plans to isolate Australia and secure the resources of Southeast Asia. As a result, Japan's focus shifted from expansion to a defensive war, which would eventually exhaust their resources and ultimately lead to their defeat.",
+      "expected_answer": "The Coral Sea fought Japanese forces to a draw and thwarted their plan to seize Port Moresby, while the subsequent defeat at Midway, where the Americans exploited broken Japanese naval codes, greatly diminished Japan's capacity for further aggressive action in the Pacific.",
+      "word_overlap": 0.737,
+      "faithfulness": 4,
+      "relevance": 5,
+      "reasoning": "The answer accurately summarizes the key points from the retrieved context, but slightly embellishes the consequences of the Midway battle.",
+      "parse_ok": true
+    },
+    {
+      "question": "Roughly how much money did Germany collect from its economic policies in occupied Western, Northern, and Central Europe by the end of the war?",
+      "generated_answer": "Germany collected approximately 69.5 billion reichsmarks (which is equivalent to about 27.8 billion US dollars) by the end of the war from its economic policies in occupied Western, Northern, and Central Europe.",
+      "expected_answer": "Roughly 69.5 billion reichsmarks (27.8 billion US dollars), not counting the value of plundered industrial products, military equipment, raw materials, and other goods.",
+      "word_overlap": 0.458,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully faithful because it directly quotes the relevant figure from the retrieved context, and it is highly relevant because it directly answers the question with the exact figure mentioned in the context.",
+      "parse_ok": true
+    },
+    {
+      "question": "What percentage of world mineral output did Britain and the United States together control in the 1930s?",
+      "generated_answer": "Britain and the United States together controlled almost 75% of world mineral output in the 1930s.",
+      "expected_answer": "Almost 75 percent of world mineral output.",
+      "word_overlap": 0.857,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer is fully grounded in the retrieved context, directly quoting a relevant passage to support the answer, and it directly and completely answers the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "How many foreign workers were present in greater Germany by late 1944, including POWs undertaking forced labour?",
+      "generated_answer": "By late 1944, there were approximately 7.6 million foreign workers in greater Germany, including prisoners of war who were undertaking forced labor.",
+      "expected_answer": "There were 7.6 million foreign workers (including POWs undertaking forced labour) and about 500,000 slave labourers in concentration camps.",
+      "word_overlap": 0.524,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer accurately reflects the information provided in the retrieved context, and directly answers the question asked.",
+      "parse_ok": true
+    },
+    {
+      "question": "According to the article, how many Chinese civilians and POWs were killed in the Nanjing massacre?",
+      "generated_answer": "Unfortunately, I don't know the exact number of Chinese civilians and POWs killed in the Nanjing massacre according to the article.",
+      "expected_answer": "Between 40,000 and 200,000 Chinese civilians and POWs.",
+      "word_overlap": 0.5,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The chatbot's answer accurately reflects the lack of specific information in the retrieved context about the number of Chinese civilians and POWs killed in the Nanjing massacre.",
+      "parse_ok": true
+    },
+    {
+      "question": "What fraction of all Allied munitions used in World War II did the United States produce?",
+      "generated_answer": "The United States produced about two-thirds of all munitions used by the Allies in World War II.",
+      "expected_answer": "About two-thirds of all munitions used by the Allies, including warships, transports, warplanes, artillery, tanks, trucks, and ammunition.",
+      "word_overlap": 0.526,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasoning": "The answer is fully faithful because it directly quotes a relevant sentence from the retrieved context, and it is highly relevant because it directly answers the question asked.",
+      "parse_ok": true
+    }
+  ]
+}
