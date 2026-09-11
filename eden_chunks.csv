@@ -1,0 +1,1200 @@
+id,document_id,session_id,chunk_index,text
+60,2,d4be0b24-6e1b-4f09-a772-031293bc6536,0,RURFTjogRW5oYW5jZWQgRGlmZnVzaW9uIGZvciBIaWdoLXF1YWxpdHkgTGFyZ2UtbW90aW9uClZpZGVvIEZyYW1lIEludGVycG9sYXRpb24KWmloYW8gWmhhbmcxLDJIYW9yYW4gQ2hlbjEsMkhhb3l1IFpoYW8xLDJHdWFuc29uZyBMdTMKWWFud2VpIEZ1MSwySGFuZyBYdTNadXh1YW4gV3UxLDIsIAAKMVNoYW5naGFpIEtleSBMYWIgb2YgSW50ZWxsLiBJbmZvLiBQcm9jZXNzaW5nLCBTY2hvb2wgb2YgQ1MsIEZ1ZGFuIFVuaXZlcnNpdHkKMlNoYW5naGFpIENvbGxhYm9yYXRpdmUgSW5ub3ZhdGlvbiBDZW50ZXIgb2YgSW50ZWxsaWdlbnQgVmlzdWFsIENvbXB1dGluZwozTm9haOKAmXMgQXJrIExhYiwgSHVhd2VpCmh0dHBzOi8vZ2l0aHViLmNvbS9iYmxkQ1Zlci9FREVOCkFic3RyYWN0CkhhbmRsaW5nIGNvbXBsZXggb3Igbm9ubGluZWFyIG1vdGlvbiBwYXR0ZXJucyBoYXMgbG9uZwpwb3NlZCBjaGFsbGVuZ2VzIGZvciB2aWRlbyBmcmFtZSBpbnRlcnBvbGF0aW9uLiBBbHRob3VnaApyZWNlbnQgYWR2YW5jZXMgaW4gZGlmZnVzaW9uLWJhc2VkIG1ldGhvZHMgb2ZmZXIgaW1wcm92ZS0KbWVudHMgb3ZlciB0cmFkaXRpb25hbCBvcHRpY2FsIGZsb3ctYmFzZWQgYXBwcm9hY2hlcywgdGhleQpzdGlsbCBzdHJ1Z2dsZSB0byBnZW5lcmF0ZSBzaGFycCwgdGVtcG9yYWxseSBjb25zaXN0ZW50CmZyYW1lcyBpbiBzY2VuYXJpb3Mgd2l0aCBsYXJnZSBtb3Rpb24uIFRvIGFkZHJlc3MgdGhpcwpsaW1pdGF0aW9uLCB3ZSBpbnRyb2R1Y2UgRURFTiAsIGFuRW5oYW5jZWQgRGlmZnVzaW9uCmZvciBoaWdoLXF1YWxpdHkgbGFyZ2UtbW90aW9uIHZpZCBFbyBmcmFtZSBpIE50ZXJwb2xhdGlvbi4KT3VyIGFwcHJvYWNoIGZpcnN0IHV0aWxpemVzIGEgdHJhbnNmb3JtZXItYmFzZWQgdG9rZW5pemVyCnRvIHByb2R1Y2UgcmVmaW5lZCBsYXRlbnQgcmVwcmVzZW50YXRpb25zIG9mIHRoZSBpbnRlcm1lZGkt
+61,2,d4be0b24-6e1b-4f09-a772-031293bc6536,1,"Our approach first utilizes a transformer-based tokenizer
+to produce refined latent representations of the intermedi-
+ate frames for diffusion models. We then enhance the diffu-
+sion transformer with temporal attention across the process
+and incorporate a start-end frame difference embedding to
+guide the generation of dynamic motion. Extensive experi-
+ments demonstrate that EDEN achieves state-of-the-art re-
+sults across popular benchmarks, including nearly a 10%
+LPIPS reduction on DAVIS and SNU-FILM, and an 8% im-
+provement on DAIN-HD.
+1. Introduction
+Video frame interpolation is a classic computer vision task
+that aims to synthesize intermediate frames between given
+starting and ending frames. It has wide applications, in-
+cluding animation production [52], generating slow motion
+videos [7, 20, 25], novel view synthesis [4, 17, 69] and
+videos compression [24, 62].
+Most existing video frame interpolation methods [19, 28,
+30, 31, 41, 49, 51, 65, 66] rely on estimating optical flow"
+62,2,d4be0b24-6e1b-4f09-a772-031293bc6536,2,dmlkZW9zIGNvbXByZXNzaW9uIFsyNCwgNjJdLgpNb3N0IGV4aXN0aW5nIHZpZGVvIGZyYW1lIGludGVycG9sYXRpb24gbWV0aG9kcyBbMTksIDI4LAozMCwgMzEsIDQxLCA0OSwgNTEsIDY1LCA2Nl0gcmVseSBvbiBlc3RpbWF0aW5nIG9wdGljYWwgZmxvdwpiZXR3ZWVuIHRoZSBzdGFydGluZyBhbmQgZW5kaW5nIGZyYW1lcyB0byBzeW50aGVzaXplIHRoZQppbnRlcm1lZGlhdGUgZnJhbWVzLiBSZWNlbnRseSwgYWR2YW5jZXMgaW4gZGlmZnVzaW9uIG1vZC0KZWxzIGhhdmUgaW5zcGlyZWQgcmVzZWFyY2hlcnMgdG8gZXhwbG9yZSB0aGVpciBhcHBsaWNhdGlvbgoAOiBDb3JyZXNwb25kaW5nIGF1dGhvciAoenh3dUBmdWRhbi5lZHUuY24pLgpMRE1WRkkgTEJCRE0gT3VycwpMRE1WRklbMTRdIExCQkRNWzM2XSBPdXJzCkZpZ3VyZSAxLiBDb21wYXJpc29ucyBiZXR3ZWVuIGV4aXN0aW5nIGRpZmZ1c2lvbi1iYXNlZCBtZXRob2RzCmFuZCBvdXIgcHJvcG9zZWQgRURFTiBvbiBsYXJnZS1tb3Rpb24gc2NlbmFyaW9zLgppbiB2aWRlbyBmcmFtZSBpbnRlcnBvbGF0aW9uIFsxNCwgMjEsIDIzLCAzNiwgNTldLiBUaGVzZQpkaWZmdXNpb24tYmFzZWQgYXBwcm9hY2hlcyB0eXBpY2FsbHkgaW52b2x2ZSBjb21wcmVzc2luZwp0aGUgaW50ZXJtZWRpYXRlIGZyYW1lcyBpbnRvIGxhdGVudCByZXByZXNlbnRhdGlvbnMgdXNpbmcgYW4KZW5jb2Rlci4gRGlmZnVzaW9uIHByb2Nlc3NlcyBhcmUgdGhlbiBhcHBsaWVkIHdpdGhpbiB0aGUKbGF0ZW50IHNwYWNlIHRvIGludGVncmF0ZSBpbmZvcm1hdGlvbiBmcm9tIGJvdGggdGhlIHN0YXJ0aW5nCmFuZCBlbmRpbmcgZnJhbWVzIHRvIHByZWRpY3QgdGhlIGxhdGVudCByZXByZXNlbnRhdGlvbiBvZiB0aGUKaW50ZXJtZWRpYXRlIGZyYW1lLiBGaW5hbGx5LCBhIGRlY29kZXIgcmVjb25zdHJ1Y3RzIHRoZSBsYS0KdGVudCByZXByZXNlbnRhdGlvbiBpbnRvIHRoZSBkZXNpcmVkIGludGVybWVkaWF0ZSBmcmFtZS4gQnk=
+63,2,d4be0b24-6e1b-4f09-a772-031293bc6536,3,"intermediate frame. Finally, a decoder reconstructs the la-
+tent representation into the desired intermediate frame. By
+directly generating intermediate frames from latent repre-
+sentations, these models eliminate the need for explicit op-
+tical flow-based warping, offering a promising alternative to
+traditional methods.
+However, despite their advantages, diffusion-based
+methods still often fail at accurately capturing large, com-
+plex motions. In scenes involving rapid, nonlinear move-
+ments, these approaches often face limitations in generat-
+ing sharp, realistic frames, resulting in motion blur and
+temporal inconsistencies. For example, as shown in Fig-
+ure 1, current diffusion based methods struggle with han-
+dling large motions. Furthermore, our analysis of current
+diffusion based methods reveals that the effect of diffusion
+on the quality of generated intermediate frames is surpris-arXiv:2503.15831v2  [cs.CV]  10 May 2025
+LDMVFI LBBDMRandom noise Denoised latent"
+64,2,d4be0b24-6e1b-4f09-a772-031293bc6536,4,"on the quality of generated intermediate frames is surpris-arXiv:2503.15831v2  [cs.CV]  10 May 2025
+LDMVFI LBBDMRandom noise Denoised latent
+LDMVFI[14] LBBDM[36]
+Figure 2. The results of existing diffusion-based VFI methods gen-
+erated from random noise and denoised latent. As is shown, the
+quality of the generated frame shows no significant difference.
+ingly minimal. To illustrate, we present in Figure 2 a com-
+parison between intermediate frames generated by directly
+decoding random noise versus decoding latent predicted by
+diffusion. As shown, the perceptual difference between
+the two is marginal, indicating a possible reason why these
+methods still struggle with complex motions.
+To address this issue, in this paper, we aim to amplify
+the impact of diffusion in the generation process. We seek
+to accomplish this by focusing on the three primary areas
+where modifications are typically feasible: the input repre-
+sentation, model architecture, and training paradigm. By"
+65,2,d4be0b24-6e1b-4f09-a772-031293bc6536,5,"where modifications are typically feasible: the input repre-
+sentation, model architecture, and training paradigm. By
+improving each of these essential components, we aim to
+deliver a more effective and resilient diffusion process.
+Specifically, to enhance the quality of the latent repre-
+sentations input to the diffusion model, instead of using the
+usual 2D-convolution-based V AE structure, we first design
+an efficient transformer-based tokenizer that compresses the
+intermediate frames into a compact set of latent tokens.
+This is evidenced by a recent work [64] that shows 1D se-
+quences as latent representations learns more high-level and
+semantic-rich image information than prior 2D grid rep-
+resentations, especially at a compact latent space. Then,
+to better integrate the context information from the start-
+ing and ending frames, we incorporate temporal modules
+throughout the encoding-decoding process. Additionally,
+we propose a novel multi-scale feature fusion module that"
+66,2,d4be0b24-6e1b-4f09-a772-031293bc6536,6,"throughout the encoding-decoding process. Additionally,
+we propose a novel multi-scale feature fusion module that
+iteratively integrates large-scale tokens with small-scale to-
+kens to capture fine-grained details across varying motion
+scales. Finally, given that real-world videos exhibit diverse
+resolutions and motion magnitudes, we further introduce a
+multi-resolution, multi-frame interval fine-tuning technique
+to handle these variations better.
+To provide a better model architecture, we adopt a
+DiT-based diffusion model instead of the traditional U-
+Net approach, leveraging DiT’s enhanced capability to han-
+dle temporal dependencies, as well as its inherent support
+for token-based inputs and greater scalability compared to
+U-Net. Furthermore, to improve the training paradigm,we propose a dual-stream context integration mechanism.
+Specifically, similar to the design of our tokenizer, we inte-
+grate temporal modules throughout the diffusion process to"
+67,2,d4be0b24-6e1b-4f09-a772-031293bc6536,7,"Specifically, similar to the design of our tokenizer, we inte-
+grate temporal modules throughout the diffusion process to
+integrate the context information from the starting and end-
+ing frames, allowing the model to capture motion dynamics
+more effectively. Additionally, given that the motion mag-
+nitude between the starting and ending frames plays a crit-
+ical role in the quality of generated frames, we introduce
+a start-end frame difference embedding as a conditioning
+input to the diffusion model. This embedding explicitly
+guides the generation process by embedding motion cues
+into the model.
+Extensive experiments on popular benchmarks show the
+success of our approach. Specifically, our method achieves
+nearly a 10% reduction in LPIPS (lower is better) compared
+to previous state-of-the-art diffusion models on DA VIS. On
+the more dynamic DAIN-HD benchmark, our method re-
+duces LPIPS by 8% compared to prior state-of-the-art meth-"
+68,2,d4be0b24-6e1b-4f09-a772-031293bc6536,8,"the more dynamic DAIN-HD benchmark, our method re-
+duces LPIPS by 8% compared to prior state-of-the-art meth-
+ods specifically designed for large motion, as well as recent
+state-of-the-art methods that have performed well across
+multiple benchmarks. In summary, our main contributions
+include:
+• We introduce an enhanced diffusion-based method for
+high-quality video frame interpolation, which we dub
+EDEN, addressing the challenging problem of video
+frame interpolation with large motion.
+• We design an efficient tokenizer for video frame inter-
+polation, which enhances the quality of latent represen-
+tations and validates its effectiveness through a series of
+ablation experiments.
+• We propose a dual-stream context integration mechanism
+to incorporate context information from the starting and
+ending frames into the diffusion model, effectively en-
+hancing the diffusion process.
+• EDEN achieves better results compared to prior state-of-"
+69,2,d4be0b24-6e1b-4f09-a772-031293bc6536,9,"ending frames into the diffusion model, effectively en-
+hancing the diffusion process.
+• EDEN achieves better results compared to prior state-of-
+the-art methods on large motion video frame interpolation
+benchmarks across generative modeling metrics.
+2. Related Work
+2.1. Video Frame Interpolation
+Most recent video frame interpolation methods focus on
+modeling the intermediate optical flow, then using forward
+warping [40] or backward warping [13, 19, 28, 30, 34] to
+synthesize the target frame. For example, SGM-VFI [31]
+adopts a sparse global matching to refine the estimated flow.
+VFIMamba [66] utilizes a global receptive field to capture
+motion via state space models.
+Recent works have started to utilize diffusion models
+to handle the VFI task. For example, LDMVFI [14] em-
+ploys a latent diffusion model to generate the intermediate
+frame conditioned on given frames. LBBDM [36] utilizes
+a consecutive brownian bridge diffusion model to synthe-
+Recon(a) Intermediate Frame Reconstruction"
+70,2,d4be0b24-6e1b-4f09-a772-031293bc6536,10,"a consecutive brownian bridge diffusion model to synthe-
+Recon(a) Intermediate Frame Reconstruction
+(b) Intermediate Frame GenerationIt
+(c) Transformer Block+++
+PatchifyNxPyramid Feature Fusion ModuleEncoder
+I0 & I1Temporal-AttnFeedforwardDecoderProject
+GenerationDiTScale & ShiftMulti-Head Self-AttentionScaleMulti-Head Temporal-AttentionScale & ShiftFeedforwardScaleNxPyramid Feature Fusion ModuleTemporal-AttnFeedforwardProject
+Projectdifference & timestepMLPTransformer BlockTransformer BlockMLP
+…Decoder
+Project
+difference & timestep
+latent tokenslatent tokens
+noisy tokens
+I0 & I1I0 & I1Figure 3. Illustration of intermediate frame reconstruction (a) and generation (b) with the transformer block (c). First, we train
+a tokenizer by reconstructing the intermediate frames to obtain latent tokens with strong representational capabilities. Then, we train a
+diffusion transformer based on these latent tokens. During inference, we utilize the diffusion transformer to generate latent tokens from"
+71,2,d4be0b24-6e1b-4f09-a772-031293bc6536,11,"diffusion transformer based on these latent tokens. During inference, we utilize the diffusion transformer to generate latent tokens from
+noise, which are then decoded into the intermediate frame by the tokenizer decoder. We inject the starting and ending frame information
+into the transformer block through temporal-attention and difference embedding.
+size the target frame. MADIFF [21] uses diffusion mod-
+els conditioned motion to generate the intermediate frame.
+VIDIM [23] uses cascaded diffusion models to generate
+target frames. However, despite their advantages, these
+diffusion-based methods still struggle with accurately cap-
+turing large, complex motions. In contrast, our EDEN can
+effectively handle complex motions by improving the qual-
+ity of the latent representations, modifying a better diffusion
+architecture, and enhancing the training paradigm.
+2.2. Image Tokenization
+Image tokenization has been widely used in deep learning,"
+72,2,d4be0b24-6e1b-4f09-a772-031293bc6536,12,"architecture, and enhancing the training paradigm.
+2.2. Image Tokenization
+Image tokenization has been widely used in deep learning,
+aiming to compress an image into a small number of in-
+formative tokens. Previous methods typically employ tok-
+enizer to help large language models understand image in-
+formation [1, 29, 32, 55] or to guide generative models in
+image generation [5, 15, 45], often without the need to re-
+construct the original image from the compressed tokens.
+Recently, Titok [64] explored the idea of compressing an
+image into a fixed number of tokens that can be used to re-
+construct the original image. The authors show that in terms
+of obtaining better latent representations, 1D sequences are
+much more effective than 2D ones. Inspired by it, we de-
+sign an efficient transformer-based tokenizer specifically for
+video frame interpolation tasks.2.3. Diffusion Models
+Denoising diffusion probabilistic models [18] have gained"
+73,2,d4be0b24-6e1b-4f09-a772-031293bc6536,13,"video frame interpolation tasks.2.3. Diffusion Models
+Denoising diffusion probabilistic models [18] have gained
+considerable attraction due to their ability to produce high-
+quality, diverse outputs. These models generate data by re-
+versing a diffusion process that progressively adds noise,
+allowing for fine control over the generation process.
+Diffusion models have been applied to a range of tasks
+beyond traditional image generation. For image super-
+resolution, [47, 48] demonstrates that diffusion models can
+produce high-fidelity results with better detail preservation
+than GANs. Similarly, for inpainting tasks, [9, 35] can
+seamlessly fill missing regions in images, often outperform-
+ing other generative methods in terms of texture and de-
+tail consistency. For video tasks, diffusion models have
+been used in video editing [56, 57, 68] and video genera-
+tion [3, 38, 58], where temporal consistency is critical.
+Moreover, the adaptability of diffusion models has led"
+74,2,d4be0b24-6e1b-4f09-a772-031293bc6536,14,"tion [3, 38, 58], where temporal consistency is critical.
+Moreover, the adaptability of diffusion models has led
+to the exploration of transformer-based diffusion back-
+bones [5, 15, 33, 37, 42], which better handle both spatial
+and temporal dependencies, especially in tasks that require
+extensive contextual information. This development sug-
+gests that diffusion models, given their flexibility and scala-
+bility, could enable applications that require multi-scale rea-
+soning and conditional information injection. Therefore, we
+employ the diffusion transformer as our generative model
+and make specific modifications to optimize it for VFI.
+3. Method
+Our goal is to amplify the impact of the diffusion model
+in VFI task from the perspective of improving latent rep-
+resentation, modifying model architecture, and enhancing
+the training paradigm. To do so, we present the framework
+EDEN where we design a novel intermediate frame tok-
+enizer based on the transformer architecture and a novel"
+75,2,d4be0b24-6e1b-4f09-a772-031293bc6536,15,"EDEN where we design a novel intermediate frame tok-
+enizer based on the transformer architecture and a novel
+DiT based diffusion framework more suitable for video
+frame interpolation task. Figure 3 illustrates the pipeline.
+In the following sections, we analyze the technical details
+of how each of the aspects is implemented.
+3.1. Improving Latent Representation
+Transformer-based Tokenizer. Existing diffusion-based
+methods typically use a 2D-convolution-based V AE model
+to obtain the latent representations of intermediate frames.
+Inspired by TiTok [64], which demonstrates that a se-
+quence of 1D representation captures richer semantic in-
+formation than a sequence of 2D representation, we design
+a transformer-based tokenizer that compresses the interme-
+diate frame into a set of latent tokens. As shown in Fig-
+ure 3 (a), both our encoder and decoder consist of Ncon-
+secutive transformer blocks, where in addition to the regu-
+lar self-attention and feed-forward module, each block also"
+76,2,d4be0b24-6e1b-4f09-a772-031293bc6536,16,"secutive transformer blocks, where in addition to the regu-
+lar self-attention and feed-forward module, each block also
+consists of a pyramid feature fusion module and temporal-
+attention modules (will be introduced next). Additionally,
+we employ a projection layer to reduce features into lower-
+dimensional tokens and then expand these tokens back to
+higher-dimensional features at the end and start of the en-
+coder and decoder, respectively.
+Pyramid Feature Fusion Module. Inspired by the capacity
+of multi-scale features to capture fine-grained details across
+varying motion scales [31, 44, 50, 65], we propose a Pyra-
+mid Feature Fusion Module to fuse features across tokens
+of different scales. Specifically, in the encoder, we first
+partition the input image into small patches to create a set
+of large-scale tokens. We then apply average pooling to
+generate a down-sampled set of small-scale tokens. Before
+passing these through the self-attention layer, we concate-"
+77,2,d4be0b24-6e1b-4f09-a772-031293bc6536,17,"generate a down-sampled set of small-scale tokens. Before
+passing these through the self-attention layer, we concate-
+nate the large-scale and small-scale tokens, allowing self-
+attention to facilitate multi-scale feature fusion. In contrast,
+the decoder starts with a set of small-scale tokens. To align
+with the encoder’s feature scale, we interpolate these tokens
+to obtain the corresponding set of large-scale tokens. The
+difference is illustrated in Figure 4. After the self-attention
+layer processes the concatenated tokens, we selectively ex-
+tract only the tokens at the positions corresponding to the
+small-scale features, passing them to subsequent layers for
+further processing.
+Temporal-Attention Module. Unlike traditional image
+compression approaches, video frame interpolation can
+benefit from the starting and ending frames by serving them
+cAvgPool(2x2)ItPyramid Feature  Fusion Module
+cInterpolate(2x2)(a) Encoder Pyramid Feature Fusion Module"
+78,2,d4be0b24-6e1b-4f09-a772-031293bc6536,18,"cAvgPool(2x2)ItPyramid Feature  Fusion Module
+cInterpolate(2x2)(a) Encoder Pyramid Feature Fusion Module
+(b) Decoder Pyramid Feature Fusion ModulePyramid Feature  Fusion Module
+PatchifyMulti-Head Self-Attention
+Multi-Head Self-Attentionlatent tokensProjectsmall-scale tokenslarge-scale tokenssmall-scale tokenslarge-scale tokensFigure 4. Pyramid Feature Fusion Module design of encoder (a)
+and decoder (b).
+as external guidance signals. To leverage this, we intro-
+duce temporal attention during the compression process, al-
+lowing the model to selectively retain relevant information
+based on token positions in the starting and ending frames.
+The goal is to filter out redundant information, thus produc-
+ing latent tokens with improved representational capacity.
+Pipeline of a Transformer Block. Formally, let I0, I1, It
+be the starting, ending, and intermediate frame. We first
+apply the usual patch embedding to obtain ˜I0,˜I1,˜Il
+t∈
+Rb×m×dthat represents patchified tokens."
+79,2,d4be0b24-6e1b-4f09-a772-031293bc6536,19,"apply the usual patch embedding to obtain ˜I0,˜I1,˜Il
+t∈
+Rb×m×dthat represents patchified tokens.
+For simplicity, we illustrate only the encoder. In the en-
+coder, average pooling is first performed on˜Il
+tto obtain
+˜Is
+t∈Rb×n×dthat represents the set of small-scale to-
+kens. Here bis the batch size, mandnare the number
+of tokens( m= 4n), and dis the hidden dimension.
+Then, the forward pass of a transformer block is:
+˜It=Concat (˜Il
+t,˜Is
+t)∈Rb×(m+n)×d,
+˜Is
+t=Self-Attention (˜It)[:, m:,:]∈Rb×n×d,
+˜I0,˜I1=Reshape (˜I0,˜I1)∈Rb×n×4×d,
+˜It=Concat (˜I0,˜Is
+t,˜I1)∈Rb×n×9×d,
+˜Is
+t=Temporal-Attention (˜It)[:,:,4,:]∈Rb×n×d,
+˜Is
+t=FeedForward (˜Is
+t).
+Multi-resolution and Multi-frame Interval Fine-tuning
+Technique. In video frame interpolation tasks, videos are
+often of varying resolutions. However, vision transform-
+ers face the scalability challenge across different resolu-
+tions. Several approaches [16, 54] have been proposed to
+address this limitation. Unlike previous methods that in-"
+80,2,d4be0b24-6e1b-4f09-a772-031293bc6536,20,"tions. Several approaches [16, 54] have been proposed to
+address this limitation. Unlike previous methods that in-
+volve adding new modules, we introduce a simple yet effec-
+tive multi-resolution fine-tuning technique. Additionally,
+we propose a multi-frame interval fine-tuning approach to
+guide EDEN in handling starting and ending frames with
+diverse motion magnitudes. Specifically, we first train the
+model at a fixed, lower resolution (256 ×448) by cropping
+the original training instances with a fixed small interval (1
+∼5) between the start and end frames. After achieving sat-
+isfactory performance, we randomly select pairs of frames
+with varied interval lengths and resolutions with equal prob-
+ability for further training, while the position embeddings
+are interpolated for different lengths and resolutions.
+Training objective Following [26, 45], our loss function
+of tokenizer comprises an L1 loss, a perceptual loss [67], a
+patch-based adversarial loss [22], and a slight KL penalty"
+81,2,d4be0b24-6e1b-4f09-a772-031293bc6536,21,"of tokenizer comprises an L1 loss, a perceptual loss [67], a
+patch-based adversarial loss [22], and a slight KL penalty
+enforcing a standard normal distribution on the learned la-
+tent space [26] as follows:
+Ltok=λ1L1+λpLp+λGLG+λklLkl, (1)
+where λ1,λp,λGandλklare balancing coefficients of each
+loss.
+3.2. Modifying Diffusion Architecture
+Our latent tokens interact continuously with the starting and
+ending frames during compression, building representations
+with strong temporal alignment. However, U-Net-based
+diffusion models, with convolution backbones, struggle to
+capture temporal dynamics and are limited to 2D sequence
+inputs. In contrast, diffusion transformers can seamlessly
+integrate temporal information via attention and handle 1D
+latent representations effectively. Therefore, we select the
+diffusion transformer, DiT [42], as the backbone of our gen-
+erative model.
+In DiT, the backbone is composed of a series of trans-
+former blocks, maintaining token scale throughout the net-"
+82,2,d4be0b24-6e1b-4f09-a772-031293bc6536,22,"erative model.
+In DiT, the backbone is composed of a series of trans-
+former blocks, maintaining token scale throughout the net-
+work. This design effectively prevents information loss that
+often occurs due to downsampling in U-Net architectures.
+Each transformer block’s attention mechanism inherently
+provides a global receptive field, which captures large intra-
+frame correlation more effectively than the local receptive
+field of convolution layers. Moreover, the diffusion trans-
+former uses adaptive Layer Normalization (adaLN) to mod-
+ulate the input and output at each layer, facilitating efficient
+conditional information injection. Specifically, the modula-
+tion process is formulated as:
+(α1, β1, γ1, α2, β2, γ2) =AdaLN (c),
+x=x+α1SelfAttention (x×γ1+β1),
+x=x+α2FeedForward (x×γ2+β2),
+where cis the conditional input and xis the feature map
+from previous layers.3.3. Enhancing Training Paradigm
+As shown in the Figure 3 (c), our diffusion transformer"
+83,2,d4be0b24-6e1b-4f09-a772-031293bc6536,23,"from previous layers.3.3. Enhancing Training Paradigm
+As shown in the Figure 3 (c), our diffusion transformer
+builds on the original DiT by introducing a dual-stream con-
+text integration mechanism to effectively incorporate con-
+text information from the starting and ending frames: one
+for temporal context and the other for difference context.
+Temporal Context Integration. Recent works [5, 15, 33,
+38] indicate that the original DiT’s method of incorporat-
+ing label and timestep information through adaLN has lim-
+ited capacity for embedding detailed contextual informa-
+tion. For video frame interpolation, it is essential to enhance
+the model’s ability to capture temporal dynamics and inte-
+grate information from the starting and ending frames into
+the diffusion process. To achieve this, we introduce a tem-
+poral attention layer after each self-attention layer similar
+to the ones in the diffusion transformer blocks of the tok-"
+84,2,d4be0b24-6e1b-4f09-a772-031293bc6536,24,"poral attention layer after each self-attention layer similar
+to the ones in the diffusion transformer blocks of the tok-
+enizer, enabling effective integration of complete start-end
+frame information throughout the diffusion process.
+Difference Context Integration. In video frame interpo-
+lation, the diffusion generation process differs significantly
+from that of standard image generation. Here, our latent to-
+kens represent intermediate frames, which are intermediate
+states of the starting and ending frames, rather than static
+2D images. These tokens are significantly influenced by
+the differences between the starting and ending frames, and
+any variations in these differences can affect the diffusion
+transformer’s output. To address this, we introduce explicit
+integration of start-end frame difference context, guiding
+the diffusion process and enhancing the model’s capacity
+to adapt to fluctuations between the initial and final frames."
+85,2,d4be0b24-6e1b-4f09-a772-031293bc6536,25,"the diffusion process and enhancing the model’s capacity
+to adapt to fluctuations between the initial and final frames.
+Specifically, we calculate the mean and standard-
+deviation of the cosine similarity for all the start-end frame
+pairs in the training set. During training, the cosine similar-
+ity of each start-end frame pair is normalized by subtracting
+the mean and dividing by the standard-deviation to obtain a
+difference context. We then use an MLP to convert this dif-
+ference context into a difference embedding, which is added
+to the timestep embedding and used as the conditional input
+for adaLN, as is shown in Figure 3 (b).
+Training Objective. Following the training strategy of
+[15], we define the forward process as straight paths be-
+tween the data distribution x0∼p(x)and a standard nor-
+mal distribution ε∼ N(0, I):
+xt= (1−t)x0+tε, t∈[0,1], (2)
+and the diffusion model predicts the following velocity field
+that maps the noise distribution to the data distribution:"
+86,2,d4be0b24-6e1b-4f09-a772-031293bc6536,26,"xt= (1−t)x0+tε, t∈[0,1], (2)
+and the diffusion model predicts the following velocity field
+that maps the noise distribution to the data distribution:
+dxt=ut(xt, t)dt, (3)
+with the following loss function:
+Ldit=Et,pt(z)||vΘ(z, t)−ut(z)||2
+2. (4)
+DA VIS DAIN-HD544p SNU-FILM (Easy) SNU-FILM (Extreme)
+LPIPS↓FloLPIPS ↓RT(s) LPIPS ↓FloLPIPS ↓RT(s) LPIPS ↓FloLPIPS ↓LPIPS↓ FloLPIPS ↓
+VFIFormer [34] 0.1370 0.1905 1.178 0.1604 0.2764 2.319 0.0176 0.0290 0.1463 0.2361
+ST-MFNet [13] 0.1232 0.1674 0.364 0.1577 0.2507 0.730 0.0210 0.0336 0.1302 0.2192
+AMT [30] 0.1091 0.1523 0.122 0.1479 0.2697 0.254 0.0191 0.0309 0.1205 0.2054
+SGM-VFI [31] 0.1140 0.1571 0.136 0.1423 0.2471 0.380 0.0178 0.0292 0.1205 0.1936
+VFIMamba [66] 0.1084 0.1486 0.230 0.1426 0.2471 0.380 0.0179 0.0299 0.1154 0.1892
+LDMVFI [14] 0.1095 0.1497 7.001 0.1490 0.2378 8.304 0.0145 0.0207 0.1227 0.1894
+LBBDM [36] 0.0963 0.1313 1.689 0.1471 0.2319 2.420 0.0120 0.0162 0.1101 0.1696"
+87,2,d4be0b24-6e1b-4f09-a772-031293bc6536,27,"LBBDM [36] 0.0963 0.1313 1.689 0.1471 0.2319 2.420 0.0120 0.0162 0.1101 0.1696
+Ours 0.0874 0.1201 0.130 0.1321 0.2184 0.250 0.0129 0.0179 0.0986 0.1653
+Table 1. Quantitative evaluation across different challenging benchmarks. The best results are in bold , and the second best are underlined.
+Running Time (RT) refers to the time required to interpolate one frame. All experiments were tested on an NVIDIA V100-32G GPU.
+4. Experiments
+4.1. Implementation Detail
+Datasets. Similar to previous diffusion-based works [14,
+21, 23, 36], we employ a large-scale dataset LA VIB [53]
+for training, aiming to effectively assess the scalability of
+diffusion models. LA VIB contains 284,484 clips with a res-
+olution of 1296x1296, each clip has 60 consecutive frames.
+To test the effectiveness of our method on large and com-
+plex motion tasks, we select commonly recognized large
+motion datasets DA VIS [43], DAIN-HD544p [2], and SNU-
+FILM [8] as our testing datasets. DA VIS is a widely used"
+88,2,d4be0b24-6e1b-4f09-a772-031293bc6536,28,"motion datasets DA VIS [43], DAIN-HD544p [2], and SNU-
+FILM [8] as our testing datasets. DA VIS is a widely used
+benchmark for large motions, containing 2,849 triplets at a
+resolution of 480x854. DAIN-HD544p is a more dynamic
+dataset, featuring 124 triplets at a resolution of 544x1280.
+SNU-FILM is a dataset comprising subsets with varying
+motion magnitudes, where each subset contains 309 triplets
+at multiple resolutions.
+Hyperparameters. To train the designed tokenizer and dif-
+fusion model, each instance is cropped to patches with a
+batch size of 256, without any data augmentation. We use
+AdamW [27] as the optimizer with β1= 0.9,β2= 0.99,
+and weight decay 1e−4. Cosine annealing is used for
+learning rate decay from 1.0e−4to1.0e−8. In the multi-
+resolution and multi-frame interval fine-tuning stage, the
+batch size is reduced to 64 and the learning rate decays from
+1.0e−5to1.25e−8. The weights for Equation (1) are set
+to1.0,1.0,0.5,1.0e−6forλ1, λp, λGandλkl, respectively."
+89,2,d4be0b24-6e1b-4f09-a772-031293bc6536,29,"1.0e−5to1.25e−8. The weights for Equation (1) are set
+to1.0,1.0,0.5,1.0e−6forλ1, λp, λGandλkl, respectively.
+The tokenizer uses 4 transformer blocks for both encoder
+and decoder, while the diffusion transformer uses 12 blocks,
+with a hidden dimension of 768 for all blocks.
+Evaluation metrics. Similar to previous diffusion-
+based work [14, 21, 23, 36], we report perceptual metrics
+LPIPS [67] and FloLPIPS [12] instead of reconstruction-
+based metrics like peak-signal-to-noise-ratio (PSNR) and
+structural similarity (SSIM) [60]. It is well-known that gen-
+erative models are not expected to achieve the best scores
+in reconstruction-based metrics [46, 61]. In fact, priorwork [6, 10, 39, 47] has consistently shown that blurrier
+images often score higher in reconstruction metrics, despite
+being rated as worse by human observers.
+4.2. Comparisons with Previous Works
+To comprehensively evaluate the effectiveness of our model
+in large motion video frame interpolation tasks, we com-"
+90,2,d4be0b24-6e1b-4f09-a772-031293bc6536,30,"To comprehensively evaluate the effectiveness of our model
+in large motion video frame interpolation tasks, we com-
+pare it with both traditional optical flow-based meth-
+ods and recent diffusion-based approaches. Specifically,
+we include VFIFormer [34], ST-MFNet [13], AMT [30],
+SGM-VFI [31], VFIMamba [66], LDMVFI [14], and
+LBBDM [36] for comparison.
+The results on DA VIS, DAIN-HD544p, SNU-FILM are
+shown in Tab. 1. For DA VIS, it is obvious that EDEN out-
+performs all other methods, achieving an LPIPS of 0.0874
+and a FloLPIPS of 0.1201. To the best of our knowledge,
+these are the best perceptual results reported on DA VIS so
+far. For DAIN-HD544P, EDEN also achieves the best re-
+sults on this more dynamic dataset, with an LPIPS of 0.1321
+and a FloLPIPS of 0.2184. Compared to SGM-VFI, which
+is specifically designed for large motion, and VFIMamba,
+which has shown state-of-the-art performance across vari-
+ous benchmarks, our LPIPS improves by 8%. For SNU-"
+91,2,d4be0b24-6e1b-4f09-a772-031293bc6536,31,"which has shown state-of-the-art performance across vari-
+ous benchmarks, our LPIPS improves by 8%. For SNU-
+FILM, EDEN achieves the best LPIPS of 0.0986 in the
+extreme motion subset, and also obtains the second-best
+LPIPS of 0.0129 in the easy motion subset, slightly be-
+low the best LPIPS of 0.0120. Notably, we find that only
+2 denoising steps are sufficient to achieve high-quality gen-
+eration (as shown in Tab. A7 and Fig. A7). Consequently,
+EDEN is significantly faster in inference time compared to
+previous diffusion-based methods, even outpacing some op-
+tical flow-based methods, and is only slower than the fastest
+methods.
+4.3. Visualization
+Fig. 5 presents a visual comparison between EDEN and pre-
+vious methods. In the first example, where the left side
+shows a moving person and the right side shows the cor-
+responding lower body movement, as well as in the sec-
+ond example, where a moving face and an animal’s tail
+LDMVFI LBBDM SGM-VFI VFIMamba GTBlended 
+InputsOurs"
+92,2,d4be0b24-6e1b-4f09-a772-031293bc6536,32,"ond example, where a moving face and an animal’s tail
+LDMVFI LBBDM SGM-VFI VFIMamba GTBlended 
+InputsOurs
+Figure 5. Visual comparison with different methods, examples selected from DA VIS, DAIN-HD544p and SNU-FILM. Ours outperforms
+previous methods in both capturing the motion of multiple objects and modeling fast, nonlinear motions.
+are depicted, previous methods are limited to capturing the
+motion of a single object. In contrast, our approach ef-
+fectively models the motion of multiple objects within the
+same frame. Notably, in scenarios involving fast or nonlin-
+ear motion – such as in the third example with the car, the
+fourth example with the bird, and the fifth example with the
+human leg and sword – previous methods struggle to accu-
+rately capture the motion. Our method, however, success-
+fully tracks the motion, according to the changes between
+the starting and ending frames.
+4.4. Ablation Study
+Placement of Temporal Attention. We evaluate the ef-"
+93,2,d4be0b24-6e1b-4f09-a772-031293bc6536,33,"the starting and ending frames.
+4.4. Ablation Study
+Placement of Temporal Attention. We evaluate the ef-
+fects of incorporating temporal attention in different trans-
+former blocks of the intermediate frame tokenizer. The re-
+sults, shown in Tab. 2, clearly indicate that incorporatingPlacement of AttentionVIMEO
+LPIPS↓FloLPIPS ↓
+None block 0.1731 0.0473
+Encoder blocks 0.0773 0.0311
+Decoder blocks 0.0190 0.0121
+All blocks 0.0150 0.0103
+Table 2. Results of incorporating temporal attention in different
+blocks on the VIMEO [63] dataset. All models are trained for
+200k steps at a resolution of 256x448.
+temporal attention in both the encoder and decoder yields
+the best performance. This outcome aligns with our hy-
+pothesis that integrating temporal dependencies across both
+encoding and decoding stages enables a more comprehen-
+sive capture of motion dynamics, leading to improved frame
+interpolation quality.
+Type of Incorporated Attention. We also conduct a com-"
+94,2,d4be0b24-6e1b-4f09-a772-031293bc6536,34,"sive capture of motion dynamics, leading to improved frame
+interpolation quality.
+Type of Incorporated Attention. We also conduct a com-
+parative analysis of cross-attention and temporal attention,
+with results summarized in Tab. 3. On the DA VIS dataset,
+both methods demonstrate similar performance, showing
+no substantial differences. However, on DAIN-HD544p,
+temporal attention yields a significant performance boost
+over cross-attention. This contrast implies that, for resolu-
+tions encountered during training, cross-attention and tem-
+poral attention perform comparably. Yet, when evaluated on
+previously unseen resolutions, cross-attention struggles to
+maintain performance, unlike temporal attention. This ob-
+served discrepancy may be due to temporal attention’s abil-
+ity to implicitly align corresponding spatial positions across
+frames, enhancing robustness to resolution shifts.
+Attention TypeDA VIS DAIN-HD544p
+LPIPS ↓FloLPIPS ↓LPIPS ↓FloLPIPS ↓"
+95,2,d4be0b24-6e1b-4f09-a772-031293bc6536,35,"frames, enhancing robustness to resolution shifts.
+Attention TypeDA VIS DAIN-HD544p
+LPIPS ↓FloLPIPS ↓LPIPS ↓FloLPIPS ↓
+Cross-Attn 0.0547 0.0689 0.0718 0.0971
+Temporal-Attn 0.0548 0.0695 0.0515 0.0665
+Table 3. Results of cross-attention and temporal-attention on dif-
+ferent resolution datasets: DA VIS and DAIN-HD544p. All models
+are trained for 200k steps at a resolution of 256x448, followed by
+an additional 50k steps of multi-resolution fine-tuning (includes
+resolution of 480x854 but excludes 544x1280).
+Latent Dimension. Recent advancements in image gen-
+eration [11, 15] suggest that increasing the latent dimen-
+sion significantly improves the generative performance of
+diffusion models. However, increasing the latent dimen-
+sion also heightens demands on the diffusion model’s gen-
+erative capacity. We assess tokenizer’s performance across
+different latent dimensions and evaluate these dimensions
+in combination with DiT in Tab. 4. Notably, while the 24-"
+96,2,d4be0b24-6e1b-4f09-a772-031293bc6536,36,"different latent dimensions and evaluate these dimensions
+in combination with DiT in Tab. 4. Notably, while the 24-
+dimensional tokenizer exhibits superior reconstruction ca-
+pabilities, its combination with DiT underperforms com-
+pared to the 16-dimensional tokenizer, likely due to DiT’s
+limited generative capacity. Considering computational ef-
+ficiency, we ultimately adopt the 16-dimensional tokenizer
+and provide additional experiments in Tab. A11.
+Latent
+DimensionDAIN-HD544p
+LPIPS ↓FloLPIPS ↓
+Tokenizer4 0.0816 0.1236
+16 0.0576 0.0758
+24 0.0515 0.0665
+Tokenizer +
+Diffusion4 0.2391 0.3099
+16 0.1538 0.2363
+24 0.1641 0.2510
+Table 4. Results of different latent dimensions on DAIN-HD544p.
+All models are trained for 200k steps at a resolution of 256x448,
+followed by 50k steps of multi-resolution fine-tuning.
+Pyramid Feature Fusion Module. To verify the effective-ness of our pyramid feature fusion module, we study the
+performance of tokenizer after removing pyramid feature"
+97,2,d4be0b24-6e1b-4f09-a772-031293bc6536,37,"performance of tokenizer after removing pyramid feature
+fusion module in Tab. 5. Specifically, we remove the con-
+catenation of different scale tokens and directly use large-
+scale or small-scale tokens separately. Clearly, the perfor-
+mance of tokenizer is significantly worse without the pyra-
+mid feature fusion module.
+PFFMDA VIS DAIN-HD544p
+LPIPS↓FloLPIPS ↓LPIPS↓FloLPIPS ↓
+Tokenizer × 0.0564 0.0799 0.0596 0.0926
+Tokenizer√0.0511 0.0669 0.0428 0.0626
+Table 5. Results of our tokenizer with or without Pyramid Feature
+Fusion Module.
+Difference Context Integration. As stated in Section 3.3,
+our design of the diffusion transformer is guided by a differ-
+ence embedding between the starting and ending frames. To
+verify the effectiveness of this strategy, we test the results
+with and without the difference embedding on the DA VIS
+and DAIN-HD544p datasets. The results in Tab. 6 demon-
+strate the significant impact of the difference context inte-"
+98,2,d4be0b24-6e1b-4f09-a772-031293bc6536,38,"and DAIN-HD544p datasets. The results in Tab. 6 demon-
+strate the significant impact of the difference context inte-
+gration on the generative capability of the diffusion model.
+Difference
+EmbeddingDA VIS DAIN-HD544p
+LPIPS↓FloLPIPS ↓LPIPS↓FloLPIPS ↓
+EDEN × 0.0976 0.1327 0.1425 0.2376
+EDEN√0.0874 0.1201 0.1321 0.2184
+Table 6. Results of training the diffusion model with or without
+difference context integration.
+5. Conclusion
+In this paper, we introduced EDEN, an enhanced diffusion-
+based method designed to tackle the challenges of large
+motion in video frame interpolation. Our framework em-
+ployed a transformer-based tokenizer to compress interme-
+diate frames into compact tokens, enhancing latent repre-
+sentations for the diffusion process. To address multi-scale
+motion, we incorporated a pyramid feature fusion mod-
+ule and introduced multi-resolution and multi-frame inter-
+val fine-tuning to adapt the model to varying motion mag-"
+99,2,d4be0b24-6e1b-4f09-a772-031293bc6536,39,"ule and introduced multi-resolution and multi-frame inter-
+val fine-tuning to adapt the model to varying motion mag-
+nitudes and resolutions. By utilizing a diffusion trans-
+former with temporal attention and a start-end frame differ-
+ence embedding, EDEN captured complex motion dynam-
+ics more effectively. Extensive experiments demonstrated
+that EDEN achieved state-of-the-art performances on large-
+motion video benchmarks while also reducing computa-
+tional costs. Despite these improvements, our method still
+suffers from blurring when handling fast changes in fine de-
+tails (e.g., text). Discussions on further details are included
+in appendix.
+Acknowledgment. This work is supported by NSFC un-
+der Grant No.62472098.
+References
+[1] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine
+Miech, Iain Barr, Yana Hasson, Karel Lenc, Arthur Men-
+sch, Katherine Millican, Malcolm Reynolds, et al. Flamingo:
+a visual language model for few-shot learning. Advances"
+100,2,d4be0b24-6e1b-4f09-a772-031293bc6536,40,"sch, Katherine Millican, Malcolm Reynolds, et al. Flamingo:
+a visual language model for few-shot learning. Advances
+in neural information processing systems , 35:23716–23736,
+2022. 3
+[2] Wenbo Bao, Wei-Sheng Lai, Chao Ma, Xiaoyun Zhang,
+Zhiyong Gao, and Ming-Hsuan Yang. Depth-aware video
+frame interpolation. In Proceedings of the IEEE/CVF con-
+ference on computer vision and pattern recognition , pages
+3703–3712, 2019. 6
+[3] Andreas Blattmann, Tim Dockhorn, Sumith Kulal, Daniel
+Mendelevitch, Maciej Kilian, Dominik Lorenz, Yam Levi,
+Zion English, Vikram V oleti, Adam Letts, et al. Stable video
+diffusion: Scaling latent video diffusion models to large
+datasets. arXiv preprint arXiv:2311.15127 , 2023. 3
+[4] Tim Brooks and Jonathan T Barron. Learning to synthesize
+motion blur. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition , pages 6840–
+6848, 2019. 1
+[5] Junsong Chen, YU Jincheng, GE Chongjian, Lewei Yao,
+Enze Xie, Zhongdao Wang, James Kwok, Ping Luo,"
+101,2,d4be0b24-6e1b-4f09-a772-031293bc6536,41,"6848, 2019. 1
+[5] Junsong Chen, YU Jincheng, GE Chongjian, Lewei Yao,
+Enze Xie, Zhongdao Wang, James Kwok, Ping Luo,
+Huchuan Lu, and Zhenguo Li. Pixart- α: Fast training of dif-
+fusion transformer for photorealistic text-to-image synthesis.
+InThe Twelfth International Conference on Learning Repre-
+sentations , 2024. 3, 5
+[6] Yu Chen, Ying Tai, Xiaoming Liu, Chunhua Shen, and Jian
+Yang. Fsrnet: End-to-end learning face super-resolution with
+facial priors. In Proceedings of the IEEE conference on
+computer vision and pattern recognition , pages 2492–2501,
+2018. 6
+[7] Zeyuan Chen, Yinbo Chen, Jingwen Liu, Xingqian Xu,
+Vidit Goel, Zhangyang Wang, Humphrey Shi, and Xiaolong
+Wang. Videoinr: Learning video implicit neural representa-
+tion for continuous space-time super-resolution. In Proceed-
+ings of the IEEE/CVF Conference on Computer Vision and
+Pattern Recognition , pages 2047–2057, 2022. 1
+[8] Myungsub Choi, Heewon Kim, Bohyung Han, Ning Xu, and"
+102,2,d4be0b24-6e1b-4f09-a772-031293bc6536,42,"Pattern Recognition , pages 2047–2057, 2022. 1
+[8] Myungsub Choi, Heewon Kim, Bohyung Han, Ning Xu, and
+Kyoung Mu Lee. Channel attention is all you need for video
+frame interpolation. In Proceedings of the AAAI Conference
+on Artificial Intelligence , pages 10663–10671, 2020. 6
+[9] Ciprian Corneanu, Raghudeep Gadde, and Aleix M Mar-
+tinez. Latentpaint: Image inpainting in latent space with
+diffusion models. In Proceedings of the IEEE/CVF Win-
+ter Conference on Applications of Computer Vision , pages
+4334–4343, 2024. 3
+[10] Ryan Dahl, Mohammad Norouzi, and Jonathon Shlens. Pixel
+recursive super resolution. In Proceedings of the IEEE inter-
+national conference on computer vision , pages 5439–5448,
+2017. 6
+[11] Xiaoliang Dai, Ji Hou, Chih-Yao Ma, Sam Tsai, Jialiang
+Wang, Rui Wang, Peizhao Zhang, Simon Vandenhende, Xi-
+aofang Wang, Abhimanyu Dubey, et al. Emu: Enhanc-
+ing image generation models using photogenic needles in a"
+103,2,d4be0b24-6e1b-4f09-a772-031293bc6536,43,"aofang Wang, Abhimanyu Dubey, et al. Emu: Enhanc-
+ing image generation models using photogenic needles in a
+haystack. arXiv preprint arXiv:2309.15807 , 2023. 8[12] Duolikun Danier, Fan Zhang, and David Bull. Flolpips: A
+bespoke video quality metric for frame interpolation. In 2022
+Picture Coding Symposium (PCS) , pages 283–287. IEEE,
+2022. 6
+[13] Duolikun Danier, Fan Zhang, and David Bull. St-mfnet: A
+spatio-temporal multi-flow network for frame interpolation.
+InProceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition , pages 3521–3531, 2022. 2,
+6
+[14] Duolikun Danier, Fan Zhang, and David Bull. Ldmvfi: Video
+frame interpolation with latent diffusion models. In Proceed-
+ings of the AAAI Conference on Artificial Intelligence , pages
+1472–1480, 2024. 1, 2, 6
+[15] Patrick Esser, Sumith Kulal, Andreas Blattmann, Rahim
+Entezari, Jonas M ¨uller, Harry Saini, Yam Levi, Dominik
+Lorenz, Axel Sauer, Frederic Boesel, et al. Scaling recti-"
+104,2,d4be0b24-6e1b-4f09-a772-031293bc6536,44,"Entezari, Jonas M ¨uller, Harry Saini, Yam Levi, Dominik
+Lorenz, Axel Sauer, Frederic Boesel, et al. Scaling recti-
+fied flow transformers for high-resolution image synthesis.
+InForty-first International Conference on Machine Learn-
+ing, 2024. 3, 5, 8
+[16] Qihang Fan, Quanzeng You, Xiaotian Han, Yongfei Liu,
+Yunzhe Tao, Huaibo Huang, Ran He, and Hongxia Yang. Vi-
+tar: Vision transformer with any resolution. arXiv preprint
+arXiv:2403.18361 , 2024. 4
+[17] John Flynn, Ivan Neulander, James Philbin, and Noah
+Snavely. Deepstereo: Learning to predict new views from the
+world’s imagery. In Proceedings of the IEEE conference on
+computer vision and pattern recognition , pages 5515–5524,
+2016. 1
+[18] Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising dif-
+fusion probabilistic models. Advances in neural information
+processing systems , 33:6840–6851, 2020. 3
+[19] Zhewei Huang, Tianyuan Zhang, Wen Heng, Boxin Shi, and
+Shuchang Zhou. Real-time intermediate flow estimation for"
+105,2,d4be0b24-6e1b-4f09-a772-031293bc6536,45,"[19] Zhewei Huang, Tianyuan Zhang, Wen Heng, Boxin Shi, and
+Shuchang Zhou. Real-time intermediate flow estimation for
+video frame interpolation. In European Conference on Com-
+puter Vision , pages 624–642, 2022. 1, 2
+[20] Zhewei Huang, Ailin Huang, Xiaotao Hu, Chen Hu, Jun Xu,
+and Shuchang Zhou. Scale-adaptive feature aggregation for
+efficient space-time video super-resolution. In Winter Con-
+ference on Applications of Computer Vision , 2024. 1
+[21] Zhilin Huang, Yijie Yu, Ling Yang, Chujun Qin, Bing Zheng,
+Xiawu Zheng, Zikun Zhou, Yaowei Wang, and Wenming
+Yang. Motion-aware latent diffusion models for video frame
+interpolation. arXiv preprint arXiv:2404.13534 , 2024. 1, 3,
+6
+[22] Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, and Alexei A
+Efros. Image-to-image translation with conditional adver-
+sarial networks. In Proceedings of the IEEE conference on
+computer vision and pattern recognition , pages 1125–1134,
+2017. 5
+[23] Siddhant Jain, Daniel Watson, Eric Tabellion, Ben Poole,"
+106,2,d4be0b24-6e1b-4f09-a772-031293bc6536,46,"computer vision and pattern recognition , pages 1125–1134,
+2017. 5
+[23] Siddhant Jain, Daniel Watson, Eric Tabellion, Ben Poole,
+Janne Kontkanen, et al. Video interpolation with diffu-
+sion models. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition , pages 7341–
+7351, 2024. 1, 3, 6
+[24] Zhaoyang Jia, Yan Lu, and Houqiang Li. Neighbor corre-
+spondence matching for flow-based video frame synthesis.
+InProceedings of the 30th ACM International Conference
+on Multimedia , pages 5389–5397, 2022. 1
+[25] Huaizu Jiang, Deqing Sun, Varun Jampani, Ming-Hsuan
+Yang, Erik Learned-Miller, and Jan Kautz. Super slomo:
+High quality estimation of multiple intermediate frames for
+video interpolation. In Proceedings of the IEEE conference
+on computer vision and pattern recognition , pages 9000–
+9008, 2018. 1
+[26] Diederik P Kingma. Auto-encoding variational bayes. arXiv
+preprint arXiv:1312.6114 , 2013. 5
+[27] Diederik P Kingma. Adam: A method for stochastic opti-"
+107,2,d4be0b24-6e1b-4f09-a772-031293bc6536,47,"preprint arXiv:1312.6114 , 2013. 5
+[27] Diederik P Kingma. Adam: A method for stochastic opti-
+mization. arXiv preprint arXiv:1412.6980 , 2014. 6
+[28] Lingtong Kong, Boyuan Jiang, Donghao Luo, Wenqing Chu,
+Xiaoming Huang, Ying Tai, Chengjie Wang, and Jie Yang.
+Ifrnet: Intermediate feature refine network for efficient frame
+interpolation. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition , pages 1969–
+1978, 2022. 1, 2
+[29] Junnan Li, Dongxu Li, Silvio Savarese, and Steven Hoi.
+Blip-2: Bootstrapping language-image pre-training with
+frozen image encoders and large language models. In In-
+ternational conference on machine learning , pages 19730–
+19742. PMLR, 2023. 3
+[30] Zhen Li, Zuo-Liang Zhu, Ling-Hao Han, Qibin Hou, Chun-
+Le Guo, and Ming-Ming Cheng. Amt: All-pairs multi-field
+transforms for efficient frame interpolation. In Proceedings
+of the IEEE/CVF Conference on Computer Vision and Pat-
+tern Recognition , pages 9801–9810, 2023. 1, 2, 6"
+108,2,d4be0b24-6e1b-4f09-a772-031293bc6536,48,"of the IEEE/CVF Conference on Computer Vision and Pat-
+tern Recognition , pages 9801–9810, 2023. 1, 2, 6
+[31] Chunxu Liu, Guozhen Zhang, Rui Zhao, and Limin Wang.
+Sparse global matching for video frame interpolation with
+large motion. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition , pages 19125–
+19134, 2024. 1, 2, 4, 6
+[32] Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong Jae Lee.
+Visual instruction tuning. Advances in neural information
+processing systems , 36, 2024. 3
+[33] Yixin Liu, Kai Zhang, Yuan Li, Zhiling Yan, Chujie Gao,
+Ruoxi Chen, Zhengqing Yuan, Yue Huang, Hanchi Sun, Jian-
+feng Gao, et al. Sora: A review on background, technology,
+limitations, and opportunities of large vision models. arXiv
+preprint arXiv:2402.17177 , 2024. 3, 5
+[34] Liying Lu, Ruizheng Wu, Huaijia Lin, Jiangbo Lu, and Jiaya
+Jia. Video frame interpolation with transformer. In Proceed-
+ings of the IEEE/CVF Conference on Computer Vision and"
+109,2,d4be0b24-6e1b-4f09-a772-031293bc6536,49,"Jia. Video frame interpolation with transformer. In Proceed-
+ings of the IEEE/CVF Conference on Computer Vision and
+Pattern Recognition , pages 3532–3542, 2022. 2, 6
+[35] Andreas Lugmayr, Martin Danelljan, Andres Romero, Fisher
+Yu, Radu Timofte, and Luc Van Gool. Repaint: Inpainting
+using denoising diffusion probabilistic models. In Proceed-
+ings of the IEEE/CVF conference on computer vision and
+pattern recognition , pages 11461–11471, 2022. 3
+[36] Zonglin Lyu, Ming Li, Jianbo Jiao, and Chen Chen. Frame
+interpolation with consecutive brownian bridge diffusion.
+arXiv preprint arXiv:2405.05953 , 2024. 1, 2, 6
+[37] Nanye Ma, Mark Goldstein, Michael S Albergo, Nicholas M
+Boffi, Eric Vanden-Eijnden, and Saining Xie. Sit: Explor-
+ing flow and diffusion-based generative models with scalable
+interpolant transformers. arXiv preprint arXiv:2401.08740 ,
+2024. 3
+[38] Xin Ma, Yaohui Wang, Gengyun Jia, Xinyuan Chen, Zi-"
+110,2,d4be0b24-6e1b-4f09-a772-031293bc6536,50,"interpolant transformers. arXiv preprint arXiv:2401.08740 ,
+2024. 3
+[38] Xin Ma, Yaohui Wang, Gengyun Jia, Xinyuan Chen, Zi-
+wei Liu, Yuan-Fang Li, Cunjian Chen, and Yu Qiao. Latte:Latent diffusion transformer for video generation. arXiv
+preprint arXiv:2401.03048 , 2024. 3, 5
+[39] Sachit Menon, Alexandru Damian, Shijia Hu, Nikhil Ravi,
+and Cynthia Rudin. Pulse: Self-supervised photo upsam-
+pling via latent space exploration of generative models. In
+Proceedings of the ieee/cvf conference on computer vision
+and pattern recognition , pages 2437–2445, 2020. 6
+[40] Simon Niklaus and Feng Liu. Softmax splatting for video
+frame interpolation. In Proceedings of the IEEE/CVF Con-
+ference on Computer Vision and Pattern Recognition , pages
+5437–5446, 2020. 2
+[41] Junheum Park, Jintae Kim, and Chang-Su Kim. Biformer:
+Learning bilateral motion estimation via bilateral trans-
+former for 4k video frame interpolation. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern"
+111,2,d4be0b24-6e1b-4f09-a772-031293bc6536,51,"former for 4k video frame interpolation. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition , pages 1568–1577, 2023. 1
+[42] William Peebles and Saining Xie. Scalable diffusion models
+with transformers. In Proceedings of the IEEE/CVF Inter-
+national Conference on Computer Vision , pages 4195–4205,
+2023. 3, 5
+[43] Jordi Pont-Tuset, Federico Perazzi, Sergi Caelles, Pablo Ar-
+bel´aez, Alex Sorkine-Hornung, and Luc Van Gool. The 2017
+davis challenge on video object segmentation. arXiv preprint
+arXiv:1704.00675 , 2017. 6
+[44] Fitsum Reda, Janne Kontkanen, Eric Tabellion, Deqing Sun,
+Caroline Pantofaru, and Brian Curless. Film: Frame inter-
+polation for large motion. In European Conference on Com-
+puter Vision , pages 250–266, 2022. 4
+[45] Robin Rombach, Andreas Blattmann, Dominik Lorenz,
+Patrick Esser, and Bj ¨orn Ommer. High-resolution image
+synthesis with latent diffusion models. In Proceedings of
+the IEEE/CVF conference on computer vision and pattern"
+112,2,d4be0b24-6e1b-4f09-a772-031293bc6536,52,"synthesis with latent diffusion models. In Proceedings of
+the IEEE/CVF conference on computer vision and pattern
+recognition , pages 10684–10695, 2022. 3, 5
+[46] Hshmat Sahak, Daniel Watson, Chitwan Saharia, and David
+Fleet. Denoising diffusion probabilistic models for ro-
+bust image super-resolution in the wild. arXiv preprint
+arXiv:2302.07864 , 2023. 6
+[47] Chitwan Saharia, Jonathan Ho, William Chan, Tim Sali-
+mans, David J Fleet, and Mohammad Norouzi. Image super-
+resolution via iterative refinement. IEEE transactions on
+pattern analysis and machine intelligence , 45(4):4713–4726,
+2022. 3, 6
+[48] Chitwan Saharia, Jonathan Ho, William Chan, Tim Sali-
+mans, David J Fleet, and Mohammad Norouzi. Image super-
+resolution via iterative refinement. IEEE transactions on
+pattern analysis and machine intelligence , 45(4):4713–4726,
+2022. 3
+[49] Zhihao Shi, Xiangyu Xu, Xiaohong Liu, Jun Chen, and
+Ming-Hsuan Yang. Video frame interpolation transformer."
+113,2,d4be0b24-6e1b-4f09-a772-031293bc6536,53,"2022. 3
+[49] Zhihao Shi, Xiangyu Xu, Xiaohong Liu, Jun Chen, and
+Ming-Hsuan Yang. Video frame interpolation transformer.
+InProceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition , pages 17482–17491, 2022.
+1
+[50] Hyeonjun Sim, Jihyong Oh, and Munchurl Kim. Xvfi:
+extreme video frame interpolation. In Proceedings of the
+IEEE/CVF international conference on computer vision ,
+pages 14489–14498, 2021. 4
+[51] Li Siyao, Shiyu Zhao, Weijiang Yu, Wenxiu Sun, Dimitris
+Metaxas, Chen Change Loy, and Ziwei Liu. Deep ani-
+mation video interpolation in the wild. In Proceedings of
+the IEEE/CVF conference on computer vision and pattern
+recognition , pages 6587–6595, 2021. 1
+[52] Li Siyao, Shiyu Zhao, Weijiang Yu, Wenxiu Sun, Dimitris
+Metaxas, Chen Change Loy, and Ziwei Liu. Deep animation
+video interpolation in the wild. In 2021 IEEE/CVF Confer-
+ence on Computer Vision and Pattern Recognition (CVPR) ,
+pages 6583–6591, 2021. 1"
+114,2,d4be0b24-6e1b-4f09-a772-031293bc6536,54,"video interpolation in the wild. In 2021 IEEE/CVF Confer-
+ence on Computer Vision and Pattern Recognition (CVPR) ,
+pages 6583–6591, 2021. 1
+[53] Alexandros Stergiou. Lavib: A large-scale video interpola-
+tion benchmark. arXiv preprint arXiv:2406.09754 , 2024. 6
+[54] Rui Tian, Zuxuan Wu, Qi Dai, Han Hu, Yu Qiao, and Yu-
+Gang Jiang. Resformer: Scaling vits with multi-resolution
+training. In Proceedings of the IEEE/CVF Conference on
+Computer Vision and Pattern Recognition , pages 22721–
+22731, 2023. 4
+[55] Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert,
+Amjad Almahairi, Yasmine Babaei, Nikolay Bashlykov,
+Soumya Batra, Prajjwal Bhargava, Shruti Bhosale, et al.
+Llama 2: Open foundation and fine-tuned chat models. arXiv
+preprint arXiv:2307.09288 , 2023. 3
+[56] Shuyuan Tu, Qi Dai, Zhi-Qi Cheng, Han Hu, Xintong Han,
+Zuxuan Wu, and Yu-Gang Jiang. Motioneditor: Editing
+video motion via content-aware diffusion. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern"
+115,2,d4be0b24-6e1b-4f09-a772-031293bc6536,55,"video motion via content-aware diffusion. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition , pages 7882–7891, 2024. 3
+[57] Shuyuan Tu, Qi Dai, Zihao Zhang, Sicheng Xie, Zhi-Qi
+Cheng, Chong Luo, Xintong Han, Zuxuan Wu, and Yu-Gang
+Jiang. Motionfollower: Editing video motion via lightweight
+score-guided diffusion. arXiv preprint arXiv:2405.20325 ,
+2024. 3
+[58] Shuyuan Tu, Zhen Xing, Xintong Han, Zhi-Qi Cheng, Qi
+Dai, Chong Luo, and Zuxuan Wu. Stableanimator: High-
+quality identity-preserving human image animation. arXiv
+preprint arXiv:2411.17697 , 2024. 3
+[59] Vikram V oleti, Alexia Jolicoeur-Martineau, and Chris Pal.
+Mcvd-masked conditional video diffusion for prediction,
+generation, and interpolation. Advances in neural informa-
+tion processing systems , 35:23371–23385, 2022. 1
+[60] Zhou Wang, Alan C Bovik, Hamid R Sheikh, and Eero P Si-
+moncelli. Image quality assessment: from error visibility to"
+116,2,d4be0b24-6e1b-4f09-a772-031293bc6536,56,"[60] Zhou Wang, Alan C Bovik, Hamid R Sheikh, and Eero P Si-
+moncelli. Image quality assessment: from error visibility to
+structural similarity. IEEE transactions on image processing ,
+13(4):600–612, 2004. 6
+[61] Daniel Watson, William Chan, Ricardo Martin-Brualla,
+Jonathan Ho, Andrea Tagliasacchi, and Mohammad
+Norouzi. Novel view synthesis with diffusion models. arXiv
+preprint arXiv:2210.04628 , 2022. 6
+[62] Chao-Yuan Wu, Nayan Singhal, and Philipp Krahenbuhl.
+Video compression through image interpolation. In Proceed-
+ings of the European conference on computer vision (ECCV) ,
+pages 416–431, 2018. 1
+[63] Tianfan Xue, Baian Chen, Jiajun Wu, Donglai Wei, and
+William T Freeman. Video enhancement with task-oriented
+flow. International Journal of Computer Vision , 127:1106–
+1125, 2019. 7
+[64] Qihang Yu, Mark Weber, Xueqing Deng, Xiaohui Shen,
+Daniel Cremers, and Liang-Chieh Chen. An image is worth32 tokens for reconstruction and generation. arXiv preprint
+arXiv:2406.07550 , 2024. 2, 3, 4"
+117,2,d4be0b24-6e1b-4f09-a772-031293bc6536,57,"Daniel Cremers, and Liang-Chieh Chen. An image is worth32 tokens for reconstruction and generation. arXiv preprint
+arXiv:2406.07550 , 2024. 2, 3, 4
+[65] Guozhen Zhang, Yuhan Zhu, Haonan Wang, Youxin Chen,
+Gangshan Wu, and Limin Wang. Extracting motion and ap-
+pearance via inter-frame attention for efficient video frame
+interpolation. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition , pages 5682–
+5692, 2023. 1, 4
+[66] Guozhen Zhang, Chunxu Liu, Yutao Cui, Xiaotong Zhao,
+Kai Ma, and Limin Wang. Vfimamba: Video frame
+interpolation with state space models. arXiv preprint
+arXiv:2407.02315 , 2024. 1, 2, 6
+[67] Richard Zhang, Phillip Isola, Alexei A Efros, Eli Shecht-
+man, and Oliver Wang. The unreasonable effectiveness of
+deep features as a perceptual metric. In Proceedings of the
+IEEE conference on computer vision and pattern recogni-
+tion, pages 586–595, 2018. 5, 6
+[68] Haoyu Zhao, Tianyi Lu, Jiaxi Gu, Xing Zhang, Qingping"
+118,2,d4be0b24-6e1b-4f09-a772-031293bc6536,58,"IEEE conference on computer vision and pattern recogni-
+tion, pages 586–595, 2018. 5, 6
+[68] Haoyu Zhao, Tianyi Lu, Jiaxi Gu, Xing Zhang, Qingping
+Zheng, Zuxuan Wu, Hang Xu, and Yu-Gang Jiang. Magdiff:
+Multi-alignment diffusion for high-fidelity video generation
+and editing. In European Conference on Computer Vision ,
+pages 205–221. Springer, 2025. 3
+[69] Zhihang Zhong, Mingdeng Cao, Xiang Ji, Yinqiang Zheng,
+and Imari Sato. Blur interpolation transformer for real-world
+motion from blur. In Proceedings of the IEEE/CVF Con-
+ference on Computer Vision and Pattern Recognition , pages
+5713–5723, 2023. 1
+A. Appendix
+A.1. Tokenizer Scalability
+We briefly validate the scalability of our tokenizer in
+Fig. A6 by leveraging different hidden dimensions of 384,
+512 and 768. As is shown, increasing the hidden dimension
+improves the performance at all stages of training, demon-
+strating the scalability of our approach. We ultimately select
+Tokenizer-L for our final tokenizer.
+30k 60k 90k 120k 150k"
+119,2,d4be0b24-6e1b-4f09-a772-031293bc6536,59,"strating the scalability of our approach. We ultimately select
+Tokenizer-L for our final tokenizer.
+30k 60k 90k 120k 150k
+Training Steps0.020.030.040.050.06LPIPS
+radius indicates 
+the Params
+Tokenizer-L
+Tokenizer-B
+Tokenizer-S
+Figure A6. Scaling the tokenizer improves LPIPS at all stages
+of training. Tokenizer-S, Tokenizer-B, and Tokenizer-L have hid-
+den dimensions of 384, 512, and 768, with parameter counts of
+20.11M, 35.01M, and 77.35M, respectively.
+A.2. Diffusion Denoising Steps
+We evaluate the impact of the number of diffusion denois-
+ing steps on the interpolation performance of our model us-
+ing DA VIS, with the visualization results in Fig. A7 and
+the quantitative results presented in Tab. A7. As observed,
+using random noise fails to capture accurate intermediate
+frame motion. Additionally, the model achieves satisfactory
+performance with just two denoising steps. Increasing the
+number of steps further significantly extends the denoising"
+120,2,d4be0b24-6e1b-4f09-a772-031293bc6536,60,"performance with just two denoising steps. Increasing the
+number of steps further significantly extends the denoising
+time while yielding limited improvement. Therefore, we
+ultimately select two denoising steps as the optimal choice.
+Denoising StepsDA VIS
+LPIPS ↓FloLPIPS ↓RT (s)
+0 0.7882 0.7907 0.06
+1 0.0892 0.1216 0.09
+2 0.0874 0.1201 0.12
+5 0.0877 0.1201 0.28
+20 0.0880 0.1204 1.17
+50 0.0874 0.1200 2.81
+Table A7. Performance comparison across different denoising
+steps on the DA VIS.
+Random Denoised
+Figure A7. The results of EDEN generated from random noise and
+denoised latent.
+A.3. 1D Tokenizer vs 2D V AE
+The ablation results of Transformer-based tokenizer and
+CNN-based V AE are summarized in Tab. A8. As is
+shown, our tokenizer significantly outperforms 2D V AE of
+LBBDM in reconstructing intermediate frames.
+PSNR↑SSIM↑LPIPS↓FloLPIPS ↓
+LBBDM V AE 26.64 0.945 0.1471 0.2319
+Our Tokenizer 34.93 0.978 0.0428 0.0626
+Table A8. Performance comparison on the DAIN-HD544p
+dataset."
+121,2,d4be0b24-6e1b-4f09-a772-031293bc6536,61,"LBBDM V AE 26.64 0.945 0.1471 0.2319
+Our Tokenizer 34.93 0.978 0.0428 0.0626
+Table A8. Performance comparison on the DAIN-HD544p
+dataset.
+A.4. Increasing interval of input frames
+We evaluate the performance of LBBDM and EDEN on
+DAIN-HD544p under increasing frame intervals, with the
+results summarized in Tab. A9. As is shown, EDEN’s per-
+formance in fitting intermediate frames still consistently
+outperforms LBBDM.
+Method PSNR ↑SSIM↑LPIPS↓FloLPIPS ↓
+2xLBBDM 26.64 0.945 0.1471 0.2319
+EDEN 26.85 0.945 0.1321 0.2184
+4xLBBDM 19.55 0.855 0.2665 0.3378
+EDEN 20.91 0.869 0.2295 0.3064
+8xLBBDM 16.09 0.764 0.4026 0.4376
+EDEN 17.70 0.795 0.3328 0.3828
+Table A9. Comparison of LBBDM and EDEN under different
+temporally downsample rates on the DAIN-HD544p dataset.
+A.5. Multi-fine-tuning Techniques
+We conduct such ablation study on the DAIN-HD544p
+dataset. The results in Tab. A10 show a clear improvement
+in the tokenizer’s performance after fine-tuning.
+PSNR↑SSIM↑LPIPS↓FloLPIPS ↓"
+122,2,d4be0b24-6e1b-4f09-a772-031293bc6536,62,"dataset. The results in Tab. A10 show a clear improvement
+in the tokenizer’s performance after fine-tuning.
+PSNR↑SSIM↑LPIPS↓FloLPIPS ↓
+wo/fine-tuning 23.55 0.901 0.3314 0.3616
+w/fine-tuning 34.93 0.978 0.0428 0.0626
+Table A10. Performance comparison with and without fine-tuning.
+A.6. Ablation studies of tokenizer dimension
+An autoencoder’s reconstruction quality directly constrains
+the achievable image quality in latent diffusion models. The
+contradiction in Tab. 4 of the main paper arises because we
+used only DiT-B in EDEN due to computational constraints.
+However, higher-dimensional tokenizers (24) require larger
+DiTs to fully capture distribution transitions.
+To further clarify, we also provide ablation results of the
+tokenizer combined with DiT on DAIN-HD544p, training
+for 200k steps, as shown in Tab. A11. Clearly, the interpo-
+lation performance of the tokenizer aligns well with its re-
+construction capability (as shown in the main paper) when
+integrated with DiT."
+123,2,d4be0b24-6e1b-4f09-a772-031293bc6536,63,"lation performance of the tokenizer aligns well with its re-
+construction capability (as shown in the main paper) when
+integrated with DiT.
+PFFM LPIPS ↓FloLPIPS ↓
+Tokenizer + DiT-B × 0.1528 0.2531
+Tokenizer + DiT-B√0.1497 0.2503
+Table A11. Performance comparison of Tokenizer+DiT-B on the
+DAIN-HD544p dataset.
+A.7. Different training datasets
+We provide the results of LDMVFI and LBBDM trained on
+the same dataset, LA VIB, in Tab. A12. Clearly, EDEN still
+outperforms them when using the same training data.
+PSNR↑SSIM↑LPIPS↓FloLPIPS ↓
+LDMVFI 25.88 0.937 0.1501 0.2413
+LBBDM 26.56 0.944 0.1477 0.2366
+EDEN 26.85 0.944 0.1321 0.2187
+Table A12. Performance comparison with the same training
+dataset on the DAIN-HD544p dataset.
+A.8. Same number of diffusion steps
+Tab. A13 shows the results on DAIN-HD544p using the
+same number of denoising steps. Clearly, EDEN achieves
+higher performance with faster speed compared to both
+LBBDM and LDMVFI.
+Denoising Steps LPIPS ↓FloLPIPS ↓RT (s) ↓
+LDMVFI"
+124,2,d4be0b24-6e1b-4f09-a772-031293bc6536,64,"higher performance with faster speed compared to both
+LBBDM and LDMVFI.
+Denoising Steps LPIPS ↓FloLPIPS ↓RT (s) ↓
+LDMVFI
+20.1501 0.2413 0.525
+LBBDM 0.1477 0.2366 0.907
+EDEN 0.1321 0.2187 0.250
+Table A13. Runtime comparison of various methods (for interpo-
+lating a 544x1280 frame) at 2 denoising steps.
+A.9. Limitations and Feature Work
+Though our method demonstrates significant improvements
+in handling complex motions, it still has certain limitations.
+Specifically, it struggles with blurring when dealing with
+rapid changes in fine details (e.g., text). As illustrated in
+Fig. A8, while our method accurately captures the positionsof moving car, the text appear blurred. A possible reason
+for this limitation is that our decoder directly applies pixel
+shuffle on the tokenizer decoder final layer’s output to gen-
+erate the image, which inherently introduces some degree
+of blurring. In future work, we plan to explore an effective
+pixel decoder network to transform the final output of the"
+125,2,d4be0b24-6e1b-4f09-a772-031293bc6536,65,"of blurring. In future work, we plan to explore an effective
+pixel decoder network to transform the final output of the
+tokenizer decoder into sharper, more realistic images.
+Figure A8. Visualization of results with blurred text.
+A.10. More Visualizations
+We provide additional visualization comparisons against
+previous state-of-the-art methods in Fig. A9. These results
+demonstrate that our method effectively handles complex
+or nonlinear motions in video frame interpolation. In com-
+parison, prior methods struggle to accurately model such
+motions.
+LDMVFI LBBDM SGM-VFI VFIMamba GTBlended 
+InputsOursFigure A9. Visual comparison with different methods, examples selected from DA VIS. Ours outperforms previous methods in both cap-
+turing the motion of multiple objects and modeling fast, nonlinear motions."

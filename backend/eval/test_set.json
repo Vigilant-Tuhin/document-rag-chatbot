@@ -1,0 +1,187 @@
+[
+  {
+    "question": "What two coalitions did nearly all the world's countries participate in during World War II?",
+    "expected_chunk_ids": [126],
+    "expected_answer": "The Allies and the Axis powers."
+  },
+  {
+    "question": "What did Nazi Germany, under Adolf Hitler, do on 1 September 1939 that is generally considered the start of World War II?",
+    "expected_chunk_ids": [128],
+    "expected_answer": "Nazi Germany, under Adolf Hitler, invaded Poland."
+  },
+  {
+    "question": "On what date did Germany sign its unconditional surrender?",
+    "expected_chunk_ids": [130],
+    "expected_answer": "8 May 1945."
+  },
+  {
+    "question": "On what date did Japan attack Pearl Harbor?",
+    "expected_chunk_ids": [178],
+    "expected_answer": "7 December 1941 (8 December in Asian time zones)."
+  },
+  {
+    "question": "What is 6 June 1944 commonly known as?",
+    "expected_chunk_ids": [198],
+    "expected_answer": "D-Day, the day the Western Allies invaded northern France."
+  },
+  {
+    "question": "Who succeeded Franklin D. Roosevelt as US President after his death on 12 April 1945?",
+    "expected_chunk_ids": [206],
+    "expected_answer": "Vice-president Harry S. Truman."
+  },
+  {
+    "question": "Where and when was the Japanese Instrument of Surrender signed?",
+    "expected_chunk_ids": [211],
+    "expected_answer": "Aboard the American battleship USS Missouri in Tokyo Bay, on 2 September 1945."
+  },
+  {
+    "question": "Approximately how many Jews did the Nazis kill in the Holocaust?",
+    "expected_chunk_ids": [223],
+    "expected_answer": "About 6 million Jews, in a racially motivated genocide known as the Holocaust."
+  },
+  {
+    "question": "When did the United Nations officially come into existence?",
+    "expected_chunk_ids": [214],
+    "expected_answer": "24 October 1945."
+  },
+  {
+    "question": "What allowed the Americans to achieve a decisive victory over the Imperial Japanese Navy at Midway?",
+    "expected_chunk_ids": [184],
+    "expected_answer": "The Americans had broken Japanese naval codes in late May and were fully aware of Japan's plans and order of battle."
+  },
+  {
+    "question": "What phrase did the Allied ultimatum issued during the Potsdam Conference use to describe the consequence of Japan rejecting unconditional surrender?",
+    "expected_chunk_ids": [209],
+    "expected_answer": "That \"the alternative for Japan is prompt and utter destruction.\""
+  },
+  {
+    "question": "What kinds of events, besides direct combat, were responsible for most civilian deaths in the war?",
+    "expected_chunk_ids": [127],
+    "expected_answer": "Massacres, starvation, disease, and genocides, including the Holocaust."
+  },
+  {
+    "question": "How was Poland divided between two aggressor states in September 1939?",
+    "expected_chunk_ids": [128],
+    "expected_answer": "Poland was invaded by both Germany and the Soviet Union in September 1939 and was partitioned between the two states under the Molotov-Ribbentrop Pact."
+  },
+  {
+    "question": "Which Pacific naval battle in mid-1942 stopped Japan's advances from continuing?",
+    "expected_chunk_ids": [129],
+    "expected_answer": "The Battle of Midway, in June 1942."
+  },
+  {
+    "question": "Which five countries became the permanent members of the UN Security Council?",
+    "expected_chunk_ids": [131],
+    "expected_answer": "China, France, the Soviet Union, the United Kingdom, and the United States."
+  },
+  {
+    "question": "What political change happened in the Japanese government shortly before the attack on Pearl Harbor?",
+    "expected_chunk_ids": [176],
+    "expected_answer": "Prime Minister Fumimaro Konoe resigned after Hirohito began favouring entry into the war, and Hirohito appointed War Minister Hideki Tojo as the new Prime Minister instead of Prince Naruhiko Higashikuni."
+  },
+  {
+    "question": "What happened to Filipino and American prisoners of war after the fall of Bataan?",
+    "expected_chunk_ids": [182],
+    "expected_answer": "Japanese forces forced roughly 75,000 Filipino and American prisoners on a 42-km death march, which resulted in thousands of deaths."
+  },
+  {
+    "question": "Why did the Soviet Union choose to make its stand at Stalingrad?",
+    "expected_chunk_ids": [187],
+    "expected_answer": "Because the German Army Group B was heading toward the Volga River, and the Soviet Union decided to defend the city of Stalingrad on the Volga rather than cede it."
+  },
+  {
+    "question": "What did the Allied leaders agree to at the Tehran Conference regarding the war against Japan?",
+    "expected_chunk_ids": [195],
+    "expected_answer": "They agreed that the Soviet Union would declare war on Japan within three months of Germany's defeat, alongside agreeing the Western Allies would invade Europe in 1944."
+  },
+  {
+    "question": "Who helped liberate Paris in August 1944, and who led that effort?",
+    "expected_chunk_ids": [199],
+    "expected_answer": "The local French resistance liberated Paris on 25 August, assisted by the Free French Forces, both led by General Charles de Gaulle."
+  },
+  {
+    "question": "What happened during the Warsaw Uprising, and how did the Soviet Red Army respond?",
+    "expected_chunk_ids": [200],
+    "expected_answer": "The Home Army, the main non-communist Polish resistance faction, initiated an uprising in Warsaw; the Germans quelled it and killed over 150,000 Poles, while the Soviet Red Army halted nearby in the Praga district and did not intervene."
+  },
+  {
+    "question": "What was Germany trying to accomplish by launching its offensive in the Ardennes in December 1944?",
+    "expected_chunk_ids": [204],
+    "expected_answer": "Germany aimed to split the Allies on the Western Front, encircle large portions of Western Allied troops, capture the supply port of Antwerp, and force a political settlement, using most of its remaining reserves."
+  },
+  {
+    "question": "How did the Bretton Woods Conference shape the post-war global economy?",
+    "expected_chunk_ids": [219],
+    "expected_answer": "It created an economic framework for the post-war world, establishing the International Monetary Fund (IMF) and the International Bank for Reconstruction and Development (IBRD), later part of the World Bank Group; the resulting Bretton Woods system lasted until 1973."
+  },
+  {
+    "question": "What justification did Japan give for occupying territories across Asia?",
+    "expected_chunk_ids": [232],
+    "expected_answer": "Japan called occupied nations part of the Greater East Asia Co-Prosperity Sphere, claiming it was meant to liberate colonised peoples from European domination, even though it was essentially a Japanese hegemony."
+  },
+  {
+    "question": "Why were aircraft carriers considered more economical than battleships during the war?",
+    "expected_chunk_ids": [237],
+    "expected_answer": "Because aircraft were relatively low cost compared to battleships, and carriers were not required to be as heavily armoured."
+  },
+  {
+    "question": "What happened to Emperor Hirohito's plans for the Soviet Far East once the US imposed sanctions on Japan?",
+    "expected_chunk_ids": [175],
+    "expected_answer": "Japan had been planning to invade the Soviet Far East to exploit Germany's invasion in the west, but abandoned the operation after the US sanctions."
+  },
+  {
+    "question": "What large-scale demographic shift resulted from Germany losing its eastern territories after the war?",
+    "expected_chunk_ids": [212],
+    "expected_answer": "Around nine million Germans were expelled to Germany from provinces such as Silesia and East Prussia that were taken over by Poland and the Soviet Union, plus three million more from the Sudetenland in Czechoslovakia."
+  },
+  {
+    "question": "How did the war expand from a localized invasion of Poland into a conflict involving the Soviet Union and the United States?",
+    "expected_chunk_ids": [128, 129],
+    "expected_answer": "After Germany invaded Poland in September 1939 (and the Soviet Union invaded it soon after), the war widened when Germany invaded the Soviet Union in June 1941, opening the Eastern Front, and Japan attacked American and British territories including Pearl Harbor in December 1941, bringing the United States into the war."
+  },
+  {
+    "question": "What sequence of internal Japanese political decisions and diplomatic failures led directly to the attack on Pearl Harbor?",
+    "expected_chunk_ids": [176, 178],
+    "expected_answer": "After Konoe's resignation and Tojo's appointment, Hirohito approved the war operations plan in early November; when the interim proposal and subsequent negotiations failed to lift US sanctions, Japan proceeded with near-simultaneous attacks on 7 December 1941, including the strike on Pearl Harbor."
+  },
+  {
+    "question": "What major leadership changes occurred among the Allied and Axis powers in the final months of the war in Europe?",
+    "expected_chunk_ids": [205, 206],
+    "expected_answer": "After the Yalta Conference in February 1945 set terms for occupying Germany, leadership changed rapidly in the following months: President Roosevelt died on 12 April and was succeeded by Truman, Mussolini was killed by Italian partisans on 28 April, and Hitler committed suicide on 30 April."
+  },
+  {
+    "question": "Which countries suffered the highest overall death tolls in the war, and which suffered the highest military death tolls?",
+    "expected_chunk_ids": [220, 221],
+    "expected_answer": "The Soviet Union had the highest overall death toll (20-28 million), followed by China, Germany, and Poland. In military deaths specifically, the Soviet Union again led (about 8.7 million), followed by Germany, China, and Japan."
+  },
+  {
+    "question": "How did the Battle of the Coral Sea and the Battle of Midway together change the trajectory of the Pacific War for Japan?",
+    "expected_chunk_ids": [183, 184],
+    "expected_answer": "The Coral Sea fought Japanese forces to a draw and thwarted their plan to seize Port Moresby, while the subsequent defeat at Midway, where the Americans exploited broken Japanese naval codes, greatly diminished Japan's capacity for further aggressive action in the Pacific."
+  },
+  {
+    "question": "Roughly how much money did Germany collect from its economic policies in occupied Western, Northern, and Central Europe by the end of the war?",
+    "expected_chunk_ids": [229],
+    "expected_answer": "Roughly 69.5 billion reichsmarks (27.8 billion US dollars), not counting the value of plundered industrial products, military equipment, raw materials, and other goods."
+  },
+  {
+    "question": "What percentage of world mineral output did Britain and the United States together control in the 1930s?",
+    "expected_chunk_ids": [233],
+    "expected_answer": "Almost 75 percent of world mineral output."
+  },
+  {
+    "question": "How many foreign workers were present in greater Germany by late 1944, including POWs undertaking forced labour?",
+    "expected_chunk_ids": [227],
+    "expected_answer": "There were 7.6 million foreign workers (including POWs undertaking forced labour) and about 500,000 slave labourers in concentration camps."
+  },
+  {
+    "question": "According to the article, how many Chinese civilians and POWs were killed in the Nanjing massacre?",
+    "expected_chunk_ids": [224],
+    "expected_answer": "Between 40,000 and 200,000 Chinese civilians and POWs."
+  },
+  {
+    "question": "What fraction of all Allied munitions used in World War II did the United States produce?",
+    "expected_chunk_ids": [234],
+    "expected_answer": "About two-thirds of all munitions used by the Allies, including warships, transports, warplanes, artillery, tanks, trucks, and ammunition."
+  }
+]
